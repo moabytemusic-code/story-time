@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FFF5F9;
+  /* Very light pink */
+  --foreground: #4B5563;
+  /* Dark Grey */
+  --primary-pink: #FF66A1;
+  /* Vibrant Pink */
+  --soft-pink: #FFB3D1;
+  /* Soft Pink */
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .font-rounded {
+    font-family: 'Fredoka', sans-serif;
+  }
+
+  .btn-primary {
+    @apply bg-pink-500 text-white font-bold px-8 py-3 rounded-full hover:bg-pink-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-pink-500 border-2 border-pink-200 font-bold px-8 py-3 rounded-full hover:border-pink-500 hover:text-pink-600 transition-all hover:scale-105 active:scale-95;
+  }
+
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-sm border border-white/50 shadow-sm rounded-3xl;
+  }
+}

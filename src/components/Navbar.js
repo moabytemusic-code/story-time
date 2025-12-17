@@ -33,10 +33,10 @@ export default function Navbar() {
                         <ShoppingBag size={24} />
                         <span className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full text-[10px] font-bold text-white flex items-center justify-center">0</span>
                     </Link>
-                    <Link href="/dashboard" className="font-bold text-gray-500 hover:text-pink-500 hidden md:block">
+                    <Link href="/login" className="font-bold text-gray-500 hover:text-pink-500 hidden md:block">
                         Log In
                     </Link>
-                    <Link href="/dashboard" className="bg-pink-400 hover:bg-pink-500 text-white font-bold px-6 py-2.5 rounded-full shadow-lg shadow-pink-200 transition-all hover:scale-105 active:scale-95 text-sm hidden md:block">
+                    <Link href="/login" className="bg-pink-400 hover:bg-pink-500 text-white font-bold px-6 py-2.5 rounded-full shadow-lg shadow-pink-200 transition-all hover:scale-105 active:scale-95 text-sm hidden md:block">
                         Join Club
                     </Link>
                 </div>

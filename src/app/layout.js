@@ -3,6 +3,7 @@ import { Fredoka, Nunito } from "next/font/google";
 import "./globals.css";
 import { UserProvider } from "@/context/UserContext";
 import { PlayerProvider } from "@/context/PlayerContext";
+import { SoundProvider } from "@/context/SoundContext";
 import PlayerBar from '@/components/PlayerBar';
 
 const fredoka = Fredoka({
@@ -23,6 +24,14 @@ const nunito = Nunito({
 // However, the current file is server component by default (no "use client" at top), but I am adding Context logic which uses React hooks.
 // Best Practice: Create a "Providers" component.
 
+export const viewport = {
+    themeColor: '#EC4899',
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false, // Prevents zooming, app-like feel
+}
+
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
@@ -38,10 +47,12 @@ export default function RootLayout({ children }) {
 
 function Providers({ children }) {
     return (
-        <UserProvider>
-            <PlayerProvider>
-                {children}
-            </PlayerProvider>
-        </UserProvider>
+        <SoundProvider>
+            <UserProvider>
+                <PlayerProvider>
+                    {children}
+                </PlayerProvider>
+            </UserProvider>
+        </SoundProvider>
     )
 }

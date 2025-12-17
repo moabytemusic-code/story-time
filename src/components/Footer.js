@@ -1,4 +1,5 @@
 import { Sparkles, Youtube, Heart, ShoppingBag } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
     return (
@@ -21,14 +22,12 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div>
-                    <h4 className="font-bold text-gray-800 mb-6">Explore</h4>
-                    <ul className="space-y-4 text-gray-500">
-                        <li><a href="#" className="hover:text-pink-500">All Stories</a></li>
-                        <li><a href="#" className="hover:text-pink-500">Membership</a></li>
-                        <li><a href="#" className="hover:text-pink-500">Gift Cards</a></li>
-                    </ul>
-                </div>
+                <h4 className="font-bold text-gray-800 mb-6">Explore</h4>
+                <ul className="space-y-4 text-gray-500">
+                    <li><Link href="/stories" className="hover:text-pink-500">All Stories</Link></li>
+                    <li><Link href="/membership" className="hover:text-pink-500">Membership</Link></li>
+                    <li><Link href="/shop" className="hover:text-pink-500">Gift Cards</Link></li>
+                </ul>
 
                 <div>
                     <h4 className="font-bold text-gray-800 mb-6">Support</h4>

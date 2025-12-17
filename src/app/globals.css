@@ -14,13 +14,13 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Nunito', sans-serif;
+  font-family: var(--font-nunito), sans-serif;
   overflow-x: hidden;
 }
 
 @layer utilities {
   .font-rounded {
-    font-family: 'Fredoka', sans-serif;
+    font-family: var(--font-fredoka), sans-serif;
   }
 
   .btn-primary {

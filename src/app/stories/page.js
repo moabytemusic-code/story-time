@@ -3,14 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Play, Clock, Headphones } from 'lucide-react';
 
-const STORIES = [
-    { id: 1, title: "Pip's Big Parade", duration: "12 min", color: "bg-purple-100", icon: "🐘", desc: "Pip finds his courage when the big parade comes to town." },
-    { id: 2, title: "Lila & The Ocean Song", duration: "15 min", color: "bg-blue-100", icon: "🌊", desc: "A calming journey to the bottom of the deep blue sea." },
-    { id: 3, title: "The Sleepy Moon", duration: "20 min", color: "bg-indigo-100", icon: "🌙", desc: "Perfect for bedtime. Say goodnight to the stars with Moon." },
-    { id: 4, title: "Leo's Lost Roar", duration: "10 min", color: "bg-orange-100", icon: "🦁", desc: "Leo wakes up with a squeak instead of a roar! What will he do?" },
-    { id: 5, title: "The Sharing Tree", duration: "14 min", color: "bg-green-100", icon: "🌳", desc: "A magical tree teaches the forest animals about kindness." },
-    { id: 6, title: "Ruby's Rainy Day", duration: "8 min", color: "bg-red-100", icon: "☔", desc: "Ruby learns that rainy days can be just as fun as sunny ones." },
-];
+import { STORIES } from '@/data/stories';
 
 export default function Stories() {
     return (

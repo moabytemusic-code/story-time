@@ -69,12 +69,12 @@ export default function Home() {
                         transition={{ delay: 0.3 }}
                         className="flex flex-col md:flex-row items-center justify-center gap-4"
                     >
-                        <button className="btn-primary flex items-center gap-2">
+                        <Link href="/stories" className="btn-primary flex items-center gap-2">
                             <BookOpen size={20} /> Explore the Stories
-                        </button>
-                        <button className="btn-secondary flex items-center gap-2">
+                        </Link>
+                        <Link href="/dashboard" className="btn-secondary flex items-center gap-2">
                             <Star size={20} /> Join Little Wonders Club
-                        </button>
+                        </Link>
                     </motion.div>
 
                 </div>

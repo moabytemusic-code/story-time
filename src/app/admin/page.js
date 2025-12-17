@@ -1,12 +1,57 @@
 "use client";
-import { Users, BookOpen, PlayCircle, HardDrive } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Users, BookOpen, PlayCircle, HardDrive, CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 export default function AdminDashboard() {
+    const [connectionStatus, setConnectionStatus] = useState("checking"); // checking, connected, error, nokeys
+
+    useEffect(() => {
+        async function checkConnection() {
+            if (!supabase) {
+                setConnectionStatus("nokeys");
+                return;
+            }
+            try {
+                const { count, error } = await supabase.from('stories').select('*', { count: 'exact', head: true });
+                if (error) throw error;
+                setConnectionStatus("connected");
+            } catch (err) {
+                console.error("Supabase Conn/Check Error:", err);
+                setConnectionStatus("error");
+            }
+        }
+        checkConnection();
+    }, []);
+
     return (
         <div>
-            <header className="mb-8">
-                <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
-                <p className="text-slate-500">Welcome back, Admin.</p>
+            <header className="mb-8 flex items-center justify-between">
+                <div>
+                    <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
+                    <p className="text-slate-500">Welcome back, Admin.</p>
+                </div>
+
+                {/* Status Indicator */}
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-gray-100">
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">System Status:</span>
+                    {connectionStatus === 'checking' && <Loader2 size={16} className="animate-spin text-blue-500" />}
+                    {connectionStatus === 'connected' && (
+                        <span className="flex items-center gap-1 text-green-600 font-bold text-sm">
+                            <CheckCircle size={16} /> Online
+                        </span>
+                    )}
+                    {connectionStatus === 'error' && (
+                        <span className="flex items-center gap-1 text-red-500 font-bold text-sm">
+                            <XCircle size={16} /> Connection Failed
+                        </span>
+                    )}
+                    {connectionStatus === 'nokeys' && (
+                        <span className="flex items-center gap-1 text-orange-500 font-bold text-sm">
+                            <XCircle size={16} /> Keys Missing
+                        </span>
+                    )}
+                </div>
             </header>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

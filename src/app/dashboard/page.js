@@ -1,7 +1,13 @@
 "use client";
 import { Play, Clock, Star } from 'lucide-react';
+import { STORIES } from '@/data/stories';
+import StoryCard from '@/components/StoryCard';
+import { usePlayer } from '@/context/PlayerContext';
 
 export default function Dashboard() {
+    const { playStory } = usePlayer();
+    const featuredStory = STORIES[1]; // Lila & The Ocean Song
+
     return (
         <div className="max-w-5xl mx-auto">
 
@@ -22,13 +28,16 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="font-rounded font-bold text-xl text-gray-700">Continue Listening</h2>
                 </div>
-                <div className="bg-white p-6 rounded-[32px] border border-pink-100 shadow-sm flex items-center gap-6 relative overflow-hidden group hover:shadow-md transition-all">
+                <div
+                    onClick={() => playStory(featuredStory)}
+                    className="bg-white p-6 rounded-[32px] border border-pink-100 shadow-sm flex items-center gap-6 relative overflow-hidden group hover:shadow-md transition-all cursor-pointer"
+                >
                     <div className="absolute top-0 left-0 w-2 h-full bg-pink-500"></div>
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-3xl shrink-0">
-                        🌊
+                    <div className={`w-16 h-16 ${featuredStory.color} rounded-full flex items-center justify-center text-3xl shrink-0`}>
+                        {featuredStory.icon}
                     </div>
                     <div className="flex-1">
-                        <h3 className="font-rounded font-bold text-lg text-gray-800 mb-1">Lila & The Ocean Song</h3>
+                        <h3 className="font-rounded font-bold text-lg text-gray-800 mb-1">{featuredStory.title}</h3>
                         <div className="flex items-center gap-4 text-xs font-bold text-gray-400">
                             <span className="text-pink-500">Left off at 4:20</span>
                             <span className="w-1 h-1 rounded-full bg-gray-300"></span>
@@ -39,7 +48,7 @@ export default function Dashboard() {
                             <div className="bg-pink-500 h-full rounded-full" style={{ width: '45%' }}></div>
                         </div>
                     </div>
-                    <button className="w-14 h-14 bg-pink-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-pink-200 hover:scale-110 active:scale-95 transition-all">
+                    <button className="w-14 h-14 bg-pink-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-pink-200 group-hover:scale-110 group-active:scale-95 transition-all">
                         <Play size={24} fill="currentColor" className="ml-1" />
                     </button>
                 </div>
@@ -51,41 +60,13 @@ export default function Dashboard() {
                     <h2 className="font-rounded font-bold text-xl text-gray-700">Recommended for You</h2>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <StoryCard
-                        title="The Magic Paintbrush"
-                        icon="🎨"
-                        color="bg-red-100"
-                        duration="10 min"
-                    />
-                    <StoryCard
-                        title="Benny's Balloon Ride"
-                        icon="🎈"
-                        color="bg-sky-100"
-                        duration="15 min"
-                    />
-                    <StoryCard
-                        title="Detective Fox"
-                        icon="🦊"
-                        color="bg-orange-100"
-                        duration="12 min"
-                    />
+                    {STORIES.slice(6, 9).map(story => (
+                        <div key={story.id} onClick={() => playStory(story)}>
+                            <StoryCard story={story} />
+                        </div>
+                    ))}
                 </div>
             </section>
-        </div>
-    );
-}
-
-function StoryCard({ title, icon, color, duration }) {
-    return (
-        <div className="bg-white p-5 rounded-[24px] border border-gray-100 hover:border-pink-200 hover:shadow-lg transition-all cursor-pointer group">
-            <div className={`w-14 h-14 ${color} rounded-2xl flex items-center justify-center text-2xl mb-4`}>
-                {icon}
-            </div>
-            <h3 className="font-rounded font-bold text-lg text-gray-800 mb-2 group-hover:text-pink-500 transition-colors">{title}</h3>
-            <div className="flex items-center gap-2 text-xs font-bold text-gray-400">
-                <Clock size={14} />
-                <span>{duration}</span>
-            </div>
         </div>
     );
 }

@@ -4,9 +4,16 @@ import { Play, Pause, X, SkipBack, SkipForward, Volume2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function PlayerBar() {
-    const { currentStory, isPlaying, togglePlay, stopStory } = usePlayer();
+    const { currentStory, isPlaying, togglePlay, stopStory, progress, currentTime, duration, seek } = usePlayer();
 
     if (!currentStory) return null;
+
+    const formatTime = (time) => {
+        if (!time || isNaN(time)) return "0:00";
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
 
     return (
         <AnimatePresence>
@@ -14,7 +21,7 @@ export default function PlayerBar() {
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 100, opacity: 0 }}
-                className="fixed bottom-0 left-0 right-0 bg-white border-t border-pink-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 px-8 z-50 flex items-center justify-between ml-64" // ml-64 to offset sidebar
+                className="fixed bottom-0 left-0 right-0 bg-white border-t border-pink-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 px-8 z-50 flex items-center justify-between ml-64"
             >
                 {/* Story Info */}
                 <div className="flex items-center gap-4 w-1/4">
@@ -28,7 +35,7 @@ export default function PlayerBar() {
                 </div>
 
                 {/* Controls */}
-                <div className="flex flex-col items-center flex-1 max-w-sm">
+                <div className="flex flex-col items-center flex-1 max-w-lg">
                     <div className="flex items-center gap-6 mb-2">
                         <button className="text-gray-400 hover:text-pink-500 transition-colors">
                             <SkipBack size={20} />
@@ -43,9 +50,27 @@ export default function PlayerBar() {
                             <SkipForward size={20} />
                         </button>
                     </div>
-                    {/* Progress Bar (Mock) */}
-                    <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full bg-pink-500 w-1/3 rounded-full"></div>
+
+                    {/* Progress Bar */}
+                    <div className="w-full flex items-center gap-3">
+                        <span className="text-xs font-bold text-gray-400 w-10 text-right">{formatTime(currentTime)}</span>
+                        <div className="flex-1 h-1 bg-gray-100 rounded-full cursor-pointer relative group"
+                            onClick={(e) => {
+                                const rect = e.currentTarget.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const width = rect.width;
+                                const percentage = (x / width) * 100;
+                                seek(percentage);
+                            }}
+                        >
+                            <div
+                                className="h-full bg-pink-500 rounded-full relative"
+                                style={{ width: `${progress}%` }}
+                            >
+                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-pink-500 rounded-full shadow-md scale-0 group-hover:scale-100 transition-transform"></div>
+                            </div>
+                        </div>
+                        <span className="text-xs font-bold text-gray-400 w-10">{formatTime(duration)}</span>
                     </div>
                 </div>
 

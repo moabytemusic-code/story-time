@@ -1,12 +1,14 @@
 "use client";
 import Link from 'next/link';
-import { BookOpen, Star, Heart, Play, Brain, Moon, Smile, Quote } from 'lucide-react';
+import { BookOpen, Star, Heart, Play, Brain, Moon, Smile, Quote, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { STORIES } from '@/data/stories';
+import { useStories } from '@/hooks/useStories';
 
 export default function Home() {
+    const { stories, loading } = useStories();
+
     return (
         <main className="min-h-screen bg-[#FFF5F9]">
             <Navbar />
@@ -123,9 +125,15 @@ export default function Home() {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        {STORIES.slice(0, 3).map((story) => (
-                            <StoryCard key={story.id} story={story} />
-                        ))}
+                        {loading ? (
+                            <div className="col-span-3 flex justify-center py-10">
+                                <Loader2 size={40} className="text-pink-400 animate-spin" />
+                            </div>
+                        ) : (
+                            stories.slice(0, 3).map((story) => (
+                                <StoryCard key={story.id} story={story} />
+                            ))
+                        )}
                     </div>
                 </div>
             </section>

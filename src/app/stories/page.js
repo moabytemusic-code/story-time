@@ -2,32 +2,35 @@
 import React, { useState, useMemo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { STORIES } from '@/data/stories';
 import StoryCard from '@/components/StoryCard';
 import { usePlayer } from '@/context/PlayerContext';
-import { Search, X } from 'lucide-react';
+import { Search, X, Loader2 } from 'lucide-react';
+import { useStories } from '@/hooks/useStories';
 
 export default function Stories() {
     const { playStory } = usePlayer();
+    const { stories, loading } = useStories();
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedTag, setSelectedTag] = useState("All");
 
     // Extract unique tags
     const tags = useMemo(() => {
-        const uniqueTags = new Set(STORIES.map(story => story.tag));
+        if (!stories) return ["All"];
+        const uniqueTags = new Set(stories.map(story => story.tag));
         return ["All", ...Array.from(uniqueTags)];
-    }, []);
+    }, [stories]);
 
     // Filter logic
     const filteredStories = useMemo(() => {
-        return STORIES.filter(story => {
+        if (!stories) return [];
+        return stories.filter(story => {
             const matchesSearch = story.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 story.desc.toLowerCase().includes(searchQuery.toLowerCase());
             const matchesTag = selectedTag === "All" || story.tag === selectedTag;
 
             return matchesSearch && matchesTag;
         });
-    }, [searchQuery, selectedTag]);
+    }, [searchQuery, selectedTag, stories]);
 
     return (
         <main className="min-h-screen bg-[#FFF5F9]">
@@ -61,27 +64,34 @@ export default function Stories() {
                     </div>
 
                     {/* Filter Tags */}
-                    <div className="flex flex-wrap items-center justify-center gap-2">
-                        {tags.map(tag => (
-                            <button
-                                key={tag}
-                                onClick={() => setSelectedTag(tag)}
-                                className={`px-4 py-2 rounded-full font-bold text-sm transition-all ${selectedTag === tag
-                                        ? 'bg-pink-500 text-white shadow-lg shadow-pink-200 scale-105'
-                                        : 'bg-white text-gray-500 border border-gray-100 hover:border-pink-200 hover:text-pink-400'
-                                    }`}
-                            >
-                                {tag}
-                            </button>
-                        ))}
-                    </div>
+                    {!loading && (
+                        <div className="flex flex-wrap items-center justify-center gap-2">
+                            {tags.map(tag => (
+                                <button
+                                    key={tag}
+                                    onClick={() => setSelectedTag(tag)}
+                                    className={`px-4 py-2 rounded-full font-bold text-sm transition-all ${selectedTag === tag
+                                            ? 'bg-pink-500 text-white shadow-lg shadow-pink-200 scale-105'
+                                            : 'bg-white text-gray-500 border border-gray-100 hover:border-pink-200 hover:text-pink-400'
+                                        }`}
+                                >
+                                    {tag}
+                                </button>
+                            ))}
+                        </div>
+                    )}
 
                 </div>
             </section>
 
             <section className="px-6 pb-20">
                 <div className="max-w-7xl mx-auto">
-                    {filteredStories.length > 0 ? (
+                    {loading ? (
+                        <div className="flex flex-col items-center justify-center py-20 text-pink-400">
+                            <Loader2 size={48} className="animate-spin mb-4" />
+                            <p className="font-bold">Loading stories...</p>
+                        </div>
+                    ) : filteredStories.length > 0 ? (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredStories.map(story => (
                                 <StoryCard

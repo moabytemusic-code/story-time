@@ -1,7 +1,10 @@
 "use client";
 import { User, Bell, CreditCard, Volume2 } from 'lucide-react';
+import { useUser } from '@/context/UserContext';
 
 export default function Settings() {
+    const { user, updateUser, settings, updateSettings } = useUser();
+
     return (
         <div>
             <header className="mb-8">
@@ -21,11 +24,21 @@ export default function Settings() {
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Child's Name</label>
-                            <input type="text" defaultValue="Alex" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors" />
+                            <input
+                                type="text"
+                                value={user.name}
+                                onChange={(e) => updateUser({ name: e.target.value })}
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors"
+                            />
                         </div>
                         <div>
                             <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Age</label>
-                            <input type="number" defaultValue="5" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors" />
+                            <input
+                                type="number"
+                                value={user.age}
+                                onChange={(e) => updateUser({ age: parseInt(e.target.value) || 0 })}
+                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors"
+                            />
                         </div>
                     </div>
                 </div>
@@ -40,20 +53,26 @@ export default function Settings() {
                     <div className="space-y-4">
                         <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
                             <span className="font-bold text-gray-700">Background Music</span>
-                            <div className="w-12 h-6 bg-pink-500 rounded-full relative cursor-pointer">
-                                <div className="absolute top-1 right-1 w-4 h-4 bg-white rounded-full"></div>
+                            <div
+                                onClick={() => updateSettings({ bgMusic: !settings.bgMusic })}
+                                className={`w-12 h-6 rounded-full relative cursor-pointer transition-colors ${settings.bgMusic ? 'bg-pink-500' : 'bg-gray-300'}`}
+                            >
+                                <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${settings.bgMusic ? 'right-1' : 'left-1'}`}></div>
                             </div>
                         </div>
                         <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
                             <span className="font-bold text-gray-700">Autoplay Next Story</span>
-                            <div className="w-12 h-6 bg-gray-300 rounded-full relative cursor-pointer">
-                                <div className="absolute top-1 left-1 w-4 h-4 bg-white rounded-full"></div>
+                            <div
+                                onClick={() => updateSettings({ autoplay: !settings.autoplay })}
+                                className={`w-12 h-6 rounded-full relative cursor-pointer transition-colors ${settings.autoplay ? 'bg-pink-500' : 'bg-gray-300'}`}
+                            >
+                                <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${settings.autoplay ? 'right-1' : 'left-1'}`}></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <button className="btn-primary w-full">Save Changes</button>
+                <button className="btn-primary w-full shadow-lg shadow-pink-200">Save Changes</button>
 
             </div>
         </div>

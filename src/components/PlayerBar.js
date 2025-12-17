@@ -21,7 +21,7 @@ export default function PlayerBar() {
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 100, opacity: 0 }}
-                className="fixed bottom-0 left-0 right-0 bg-white border-t border-pink-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 px-8 z-50 flex items-center justify-between ml-64"
+                className="fixed bottom-0 left-0 right-0 bg-white border-t border-pink-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 px-8 z-[100] flex items-center justify-between"
             >
                 {/* Story Info */}
                 <div className="flex items-center gap-4 w-1/4">

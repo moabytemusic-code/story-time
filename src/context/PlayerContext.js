@@ -3,6 +3,8 @@ import React, { createContext, useContext, useState } from 'react';
 
 const PlayerContext = createContext();
 
+import { useUser } from './UserContext';
+
 export function PlayerProvider({ children }) {
     const [currentStory, setCurrentStory] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -10,6 +12,9 @@ export function PlayerProvider({ children }) {
     const [progress, setProgress] = useState(0); // 0 to 100
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+
+    // Get checkAchievements from UserContext
+    const { checkAchievements } = useUser();
 
     const playStory = (story) => {
         if (currentStory?.id === story.id) {
@@ -36,6 +41,7 @@ export function PlayerProvider({ children }) {
             setIsPlaying(false);
             setProgress(0);
             setCurrentTime(0);
+            checkAchievements(story.id); // Check for achievements!
         });
 
         setAudio(newAudio);

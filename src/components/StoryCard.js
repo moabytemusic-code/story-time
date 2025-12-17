@@ -1,10 +1,12 @@
 "use client";
-import { Play, Lock } from 'lucide-react';
+import { Play, Lock, Info } from 'lucide-react';
+import Link from 'next/link';
 
-export default function StoryCard({ story, isLocked = false }) {
-    return (
-        <div className={`group bg-white border border-gray-100 p-6 rounded-[32px] hover:shadow-xl hover:shadow-pink-100/50 transition-all hover:-translate-y-1 cursor-pointer h-full flex flex-col relative ${isLocked ? 'opacity-75 grayscale-[0.5]' : ''}`}>
+export default function StoryCard({ story, isLocked = false, onPlay, href }) {
 
+    // Inner content of the card
+    const CardContent = () => (
+        <>
             {/* Icon Area */}
             <div className={`w-16 h-16 ${story.color} rounded-full flex items-center justify-center text-3xl mb-5 shadow-sm`}>
                 {story.icon}
@@ -24,9 +26,25 @@ export default function StoryCard({ story, isLocked = false }) {
             <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1 line-clamp-2">
                 {story.desc}
             </p>
+        </>
+    );
+
+    const Wrapper = ({ children }) => {
+        if (href) {
+            return <Link href={href} className="contents">{children}</Link>;
+        }
+        return <>{children}</>;
+    }
+
+    return (
+        <div className={`group bg-white border border-gray-100 p-6 rounded-[32px] hover:shadow-xl hover:shadow-pink-100/50 transition-all hover:-translate-y-1 cursor-pointer h-full flex flex-col relative ${isLocked ? 'opacity-75 grayscale-[0.5]' : ''}`}>
+
+            <Wrapper>
+                <CardContent />
+            </Wrapper>
 
             {/* Footer */}
-            <div className="flex items-center justify-between mt-auto">
+            <div className="flex items-center justify-between mt-auto z-10">
                 <span className="text-xs font-bold text-gray-400">{story.duration}</span>
 
                 {isLocked ? (
@@ -34,7 +52,13 @@ export default function StoryCard({ story, isLocked = false }) {
                         <Lock size={16} />
                     </div>
                 ) : (
-                    <button className="w-10 h-10 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-colors shadow-sm">
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault(); // Prevent navigation if clicking play
+                            onPlay && onPlay(story);
+                        }}
+                        className="w-10 h-10 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-colors shadow-sm"
+                    >
                         <Play size={16} fill="currentColor" className="ml-0.5" />
                     </button>
                 )}

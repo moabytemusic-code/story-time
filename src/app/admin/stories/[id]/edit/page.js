@@ -15,7 +15,7 @@ export default function EditStory() {
     const [story, setStory] = useState({
         title: '',
         tag: '',
-        desc: '',
+        description: '', // Changed from desc
         icon: '',
         color: 'bg-pink-100'
     });
@@ -40,7 +40,11 @@ export default function EditStory() {
             if (error) {
                 console.error("Error fetching story:", error);
             } else if (data) {
-                setStory(data);
+                // Map old schema if necessary, or just use data
+                setStory({
+                    ...data,
+                    description: data.description || data.desc // Handle both
+                });
             }
             setLoading(false);
         }
@@ -63,7 +67,7 @@ export default function EditStory() {
             .update({
                 title: story.title,
                 tag: story.tag,
-                desc: story.desc,
+                description: story.description, // Changed from desc
                 // other fields would go here
             })
             .eq('id', id);

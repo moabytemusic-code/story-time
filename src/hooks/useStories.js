@@ -21,7 +21,9 @@ export function useStories() {
                     .order('created_at', { ascending: false });
 
                 if (error) {
-                    console.error('Error fetching stories:', error);
+                    // Log the full error object for debugging
+                    console.error(' Supabase Fetch Error:', JSON.stringify(error, null, 2));
+                    console.error(' Details:', error);
                     setStories(MOCK_STORIES); // Fallback
                 } else {
                     // If DB is empty, use mock data so the site isn't blank

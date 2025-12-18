@@ -24,7 +24,7 @@ export default function StoryCard({ story, isLocked = false, onPlay, href }) {
                 {story.title}
             </h3>
             <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1 line-clamp-2">
-                {story.desc}
+                {story.description || story.desc}
             </p>
         </>
     );

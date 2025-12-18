@@ -7,7 +7,18 @@ import { supabase, uploadFile } from '@/lib/supabase';
 export default function NewStory() {
     const [audioFile, setAudioFile] = useState(null);
     const [imageFile, setImageFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImageFile(file);
+            setImagePreview(URL.createObjectURL(file));
+        }
+    };
+    // ... handleSubmit ...
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -120,17 +131,36 @@ export default function NewStory() {
                         </div>
 
                         {/* Image */}
-                        <div className="relative border-2 border-dashed border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 hover:border-pink-300 transition-all cursor-pointer group">
-                            <div className="w-12 h-12 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <ImageIcon size={24} />
-                            </div>
-                            <span className="font-bold text-slate-600 mb-1">{imageFile ? imageFile.name : "Cover Image"}</span>
-                            <span className="text-xs text-slate-400">JPG, PNG</span>
+                        {/* Image */}
+                        <div className="relative h-64 border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center text-center hover:bg-gray-50 hover:border-pink-300 transition-all cursor-pointer group overflow-hidden bg-gray-50/50">
+
+                            {imagePreview ? (
+                                <>
+                                    <img src={imagePreview} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Preview" />
+                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors"></div>
+                                    <div className="relative z-10 flex flex-col items-center text-white">
+                                        <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-3 text-white border border-white/30">
+                                            <ImageIcon size={24} />
+                                        </div>
+                                        <span className="font-bold text-white drop-shadow-md mb-1">{imageFile.name}</span>
+                                        <span className="text-xs font-bold bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white border border-white/20">Click to Change</span>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="p-8 flex flex-col items-center">
+                                    <div className="w-12 h-12 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                        <ImageIcon size={24} />
+                                    </div>
+                                    <span className="font-bold text-slate-600 mb-1">Cover Image</span>
+                                    <span className="text-xs text-slate-400">JPG, PNG</span>
+                                </div>
+                            )}
+
                             <input
                                 type="file"
                                 accept="image/*"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                onChange={(e) => setImageFile(e.target.files[0])}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
+                                onChange={handleImageChange}
                             />
                         </div>
                     </div>

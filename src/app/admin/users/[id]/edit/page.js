@@ -103,7 +103,7 @@ export default function EditUser() {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-500 uppercase">Full Name</label>
+                    <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Full Name</label>
                     <input
                         name="full_name"
                         type="text"
@@ -115,7 +115,7 @@ export default function EditUser() {
 
                 <div className="grid grid-cols-2 gap-6">
                     <div className="space-y-2">
-                        <label className="text-sm font-bold text-slate-500 uppercase">Plan</label>
+                        <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Plan</label>
                         <select
                             name="plan"
                             value={profile.plan || 'Free'}
@@ -130,7 +130,7 @@ export default function EditUser() {
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm font-bold text-slate-500 uppercase">Status</label>
+                        <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Status</label>
                         <select
                             name="status"
                             value={profile.status || 'Active'}

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, BookOpen, Trophy, Settings, LogOut, Sparkles, ShoppingBag } from 'lucide-react';
 import { PlayerProvider } from '@/context/PlayerContext';
-import { UserProvider } from '@/context/UserContext';
+import { UserProvider, useUser } from '@/context/UserContext';
 import PlayerBar from '@/components/PlayerBar';
 
 const MENU_ITEMS = [

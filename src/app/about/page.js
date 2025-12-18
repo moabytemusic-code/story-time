@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Heart, Star, Sparkles, BookOpen } from 'lucide-react';
@@ -27,9 +28,14 @@ export default function About() {
                     </div>
 
                     <div className="flex-1 relative">
-                        <div className="w-full aspect-square bg-[#FFE8F0] rounded-[60px] relative overflow-hidden flex items-center justify-center shadow-lg border-4 border-white">
-                            <div className="text-9xl">👩‍🏫</div>
-                            {/* Placeholder for an actual image of Ms. Erica */}
+                        <div className="w-full aspect-square bg-[#FFE8F0] rounded-[60px] relative overflow-hidden shadow-lg border-4 border-white">
+                            <Image
+                                src="/images/ms-erica.jpg"
+                                alt="Ms. Erica"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
                         </div>
                         {/* Decorative blobs */}
                         <div className="absolute -top-10 -right-10 w-32 h-32 bg-yellow-200 rounded-full blur-3xl opacity-50"></div>
@@ -73,8 +79,13 @@ export default function About() {
             {/* Meet the Creator */}
             <section className="py-20 px-6">
                 <div className="max-w-4xl mx-auto bg-pink-500 rounded-[40px] p-8 md:p-16 text-center md:text-left text-white flex flex-col md:flex-row items-center gap-12 shadow-xl shadow-pink-200">
-                    <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center text-6xl shrink-0 backdrop-blur-sm border-2 border-white/30">
-                        👩‍🏫
+                    <div className="w-32 h-32 relative rounded-full overflow-hidden shrink-0 border-2 border-white/30 shadow-sm">
+                        <Image
+                            src="/images/ms-erica.jpg"
+                            alt="Ms. Erica"
+                            fill
+                            className="object-cover"
+                        />
                     </div>
                     <div>
                         <h2 className="font-rounded font-extrabold text-3xl mb-4">Hi, I'm Ms. Erica!</h2>

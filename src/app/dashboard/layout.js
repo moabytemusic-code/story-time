@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, BookOpen, Trophy, Settings, LogOut, Sparkles } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Trophy, Settings, LogOut, Sparkles, ShoppingBag } from 'lucide-react';
 import { PlayerProvider } from '@/context/PlayerContext';
 import { UserProvider } from '@/context/UserContext';
 import PlayerBar from '@/components/PlayerBar';
@@ -9,6 +9,7 @@ import PlayerBar from '@/components/PlayerBar';
 const MENU_ITEMS = [
     { name: 'Overview', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
     { name: 'My Stories', icon: <BookOpen size={20} />, path: '/dashboard/stories' },
+    { name: 'Treasure Chest', icon: <ShoppingBag size={20} />, path: '/shop' },
     { name: 'Achievements', icon: <Trophy size={20} />, path: '/dashboard/achievements' },
     { name: 'Settings', icon: <Settings size={20} />, path: '/dashboard/settings' },
 ];

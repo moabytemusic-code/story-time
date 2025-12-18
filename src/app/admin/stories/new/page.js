@@ -5,37 +5,67 @@ import { useState } from 'react';
 import { supabase, uploadFile } from '@/lib/supabase';
 
 export default function NewStory() {
-    const [loading, setLoading] = useState(false);
+    const [audioFile, setAudioFile] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        // Supabase logic would go here
-        // 1. Upload Audio
-        // 2. Upload Icon/Image
-        // 3. Insert into 'stories' table
-
         if (!supabase) {
-            alert("Supabase is not configured! Check console.");
-            console.log("Mock Submit: Story created.");
+            alert("Supabase not available");
             setLoading(false);
             return;
         }
 
-        // Example Real Logic
-        /*
-        const { error } = await supabase.from('stories').insert({
-             title: e.target.title.value,
-             ...
-        }) 
-        */
+        try {
+            const title = e.target.title.value;
+            const tag = e.target.tag.value;
+            const description = e.target.desc.value;
 
-        setLoading(false);
+            // 1. Upload Audio
+            let audioUrl = null;
+            if (audioFile) {
+                audioUrl = await uploadFile(audioFile, 'uploads');
+            }
+
+            // 2. Upload Image
+            let imageUrl = null;
+            if (imageFile) {
+                imageUrl = await uploadFile(imageFile, 'uploads');
+            }
+
+            // 3. Insert Story
+            // Note: We use 'description' column now
+            const { error } = await supabase.from('stories').insert({
+                title,
+                tag,
+                description,
+                audio_url: audioUrl,
+                icon: imageUrl ? '🖼️' : '🎧', // Fallback icon
+                image_url: imageUrl,
+                duration: '10 min',
+                color: 'bg-green-100'
+            });
+
+            if (error) throw error;
+
+            // Success
+            alert("Story created successfully!");
+            // Redirect or clear form
+            window.location.href = '/admin/stories';
+
+        } catch (err) {
+            console.error("Upload Error:", err);
+            alert("Error creating story: " + err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div className="max-w-4xl mx-auto">
+            {/* ... header ... */}
             <Link href="/admin/stories" className="flex items-center gap-2 text-slate-400 hover:text-slate-600 font-bold mb-6 transition-colors">
                 <ArrowLeft size={18} /> Back to Stories
             </Link>
@@ -74,34 +104,43 @@ export default function NewStory() {
 
                     <div className="grid md:grid-cols-2 gap-6">
                         {/* Audio */}
-                        <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 hover:border-pink-300 transition-all cursor-pointer group">
+                        <div className="relative border-2 border-dashed border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 hover:border-pink-300 transition-all cursor-pointer group">
                             <div className="w-12 h-12 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                 <Music size={24} />
                             </div>
-                            <span className="font-bold text-slate-600 mb-1">Upload Audio</span>
-                            <span className="text-xs text-slate-400">MP3, WAV (Max 50MB)</span>
-                            <input type="file" accept="audio/*" className="hidden" />
+                            <span className="font-bold text-slate-600 mb-1">{audioFile ? audioFile.name : "Upload Audio"}</span>
+                            <span className="text-xs text-slate-400">MP3, WAV</span>
+                            <input
+                                type="file"
+                                accept="audio/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                onChange={(e) => setAudioFile(e.target.files[0])}
+                            />
                         </div>
 
                         {/* Image */}
-                        <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 hover:border-pink-300 transition-all cursor-pointer group">
+                        <div className="relative border-2 border-dashed border-gray-200 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:bg-gray-50 hover:border-pink-300 transition-all cursor-pointer group">
                             <div className="w-12 h-12 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                                 <ImageIcon size={24} />
                             </div>
-                            <span className="font-bold text-slate-600 mb-1">Cover Image</span>
-                            <span className="text-xs text-slate-400">JPG, PNG (512x512)</span>
-                            <input type="file" accept="image/*" className="hidden" />
+                            <span className="font-bold text-slate-600 mb-1">{imageFile ? imageFile.name : "Cover Image"}</span>
+                            <span className="text-xs text-slate-400">JPG, PNG</span>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                onChange={(e) => setImageFile(e.target.files[0])}
+                            />
                         </div>
                     </div>
                 </div>
 
                 <div className="flex justify-end gap-4">
-                    <button type="button" className="px-6 py-3 font-bold text-slate-500 hover:bg-slate-100 rounded-xl transition-colors">Cancel</button>
+                    <Link href="/admin/stories" className="px-6 py-3 font-bold text-slate-500 hover:bg-slate-100 rounded-xl transition-colors">Cancel</Link>
                     <button type="submit" disabled={loading} className="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors flex items-center gap-2 shadow-lg shadow-slate-200">
                         {loading ? 'Saving...' : <><Save size={18} /> Save Story</>}
                     </button>
                 </div>
-
             </form>
 
             <style jsx>{`

@@ -1,57 +1,81 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-    // Persist state to localStorage in a real app, strict mode/server rendering makes this tricky without useEffect
-    const [user, setUser] = useState({
-        name: "Alex",
-        age: 5,
-        avatar: "🦁"
-    });
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const [settings, setSettings] = useState({
-        bgMusic: true,
-        autoplay: false
-    });
+    // Gamification State (Local for now, could be moved to DB 'profiles' table later)
+    const [settings, setSettings] = useState({ bgMusic: true, autoplay: false });
+    const [stats, setStats] = useState({ storiesCompleted: 0, totalMinutes: 0, streakDays: 3 });
+    const [unlockedAchievements, setUnlockedAchievements] = useState([1, 2]);
 
-    const [stats, setStats] = useState({
-        storiesCompleted: 0,
-        totalMinutes: 0,
-        streakDays: 3
-    });
+    useEffect(() => {
+        if (!supabase) {
+            // If no Supabase, keep mock user for demo purposes if desired, or null
+            // setUser({ name: "Demo User", email: "demo@example.com" });
+            setLoading(false);
+            return;
+        }
 
-    const [unlockedAchievements, setUnlockedAchievements] = useState([1, 2]); // IDs of unlocked achievements
+        // Check active session
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setUser(session?.user ?? null);
+            setLoading(false);
+        });
 
-    // Mock function to update user
-    const updateUser = (updates) => setUser(prev => ({ ...prev, ...updates }));
+        // Listen for changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user ?? null);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
+
+    const login = async (email, password) => {
+        if (!supabase) throw new Error("Supabase not configured");
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        return data;
+    };
+
+    const signup = async (email, password, name) => {
+        if (!supabase) throw new Error("Supabase not configured");
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                data: { full_name: name }
+            }
+        });
+        if (error) throw error;
+        return data;
+    };
+
+    const logout = async () => {
+        if (!supabase) return;
+        await supabase.auth.signOut();
+    };
+
     const updateSettings = (updates) => setSettings(prev => ({ ...prev, ...updates }));
 
-    // Logic to unlock achievements
     const checkAchievements = (storyId) => {
-        // Example logic: Unlock 'Bookworm' (id: 2) if completed 5 stories
+        // Simple mock achievement logic
         const newCompleted = stats.storiesCompleted + 1;
-
         let newUnlocks = [...unlockedAchievements];
-        if (newCompleted >= 5 && !newUnlocks.includes(2)) {
-            newUnlocks.push(2); // Unlock Bookworm
-            // In a real app, trigger a toast notification here
-        }
-        if (newCompleted >= 10 && !newUnlocks.includes(4)) {
-            newUnlocks.push(4); // Unlock Super Listener
-        }
-
+        if (newCompleted >= 5 && !newUnlocks.includes(2)) newUnlocks.push(2);
         setStats(prev => ({ ...prev, storiesCompleted: newCompleted }));
         setUnlockedAchievements(newUnlocks);
     };
 
     return (
         <UserContext.Provider value={{
-            user, updateUser,
+            user, login, signup, logout, loading,
             settings, updateSettings,
-            stats, checkAchievements,
-            unlockedAchievements
+            stats, checkAchievements, unlockedAchievements
         }}>
             {children}
         </UserContext.Provider>

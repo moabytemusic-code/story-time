@@ -49,26 +49,16 @@ export default function EditUser() {
         e.preventDefault();
         setSaving(true);
 
-        console.log("Saving profile for ID:", id);
-        console.log("Payload:", {
-            full_name: profile.full_name,
-            plan: profile.plan,
-            status: profile.status
-        });
-
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('profiles')
             .update({
                 full_name: profile.full_name,
                 plan: profile.plan,
                 status: profile.status
             })
-            .eq('id', id)
-            .select(); // Add select() to return the updated data for verification
+            .eq('id', id);
 
         if (error) {
-            console.error("Supabase Update Error:", error);
-
             alert("Error saving: " + error.message);
         } else {
             // Force hard reload to guarantee fresh data

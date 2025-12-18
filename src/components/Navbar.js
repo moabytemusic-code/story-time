@@ -2,9 +2,11 @@
 import Link from 'next/link';
 import { Sparkles, ShoppingBag } from 'lucide-react';
 import { useSound } from '@/context/SoundContext';
+import { useCart } from '@/context/CartContext';
 
 export default function Navbar() {
     const { playSound } = useSound();
+    const { totalItems } = useCart();
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-pink-100">
@@ -34,7 +36,11 @@ export default function Navbar() {
                 <div className="flex items-center gap-4">
                     <Link href="/cart" onClick={() => playSound()} className="relative text-gray-400 hover:text-pink-500 transition">
                         <ShoppingBag size={24} />
-                        <span className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full text-[10px] font-bold text-white flex items-center justify-center">0</span>
+                        {totalItems > 0 && (
+                            <span className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full text-[10px] font-bold text-white flex items-center justify-center animate-bounce">
+                                {totalItems}
+                            </span>
+                        )}
                     </Link>
                     <Link href="/login" onClick={() => playSound()} className="font-bold text-gray-500 hover:text-pink-500 hidden md:block">
                         Log In

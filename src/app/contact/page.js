@@ -25,7 +25,8 @@ export default function Contact() {
                 alert("Message sent! We'll be in touch safely soon.");
                 setFormData({ parentName: '', childName: '', email: '', message: '' });
             } else {
-                alert("Oops! Something went wrong. Please try again.");
+                const resData = await res.json();
+                alert("Oops! " + (resData.message || "Something went wrong. Please try again."));
             }
         } catch (error) {
             console.error("Contact Error:", error);

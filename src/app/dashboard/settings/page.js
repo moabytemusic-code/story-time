@@ -1,9 +1,29 @@
 "use client";
 import { User, Bell, CreditCard, Volume2 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useState } from 'react';
 
 export default function Settings() {
-    const { user, updateUser, settings, updateSettings } = useUser();
+    const { user, updateUser, settings, updateSettings, loading } = useUser();
+
+    // Local state for inputs to avoid jumping
+    const [name, setName] = useState(user?.user_metadata?.full_name || '');
+
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
+
+    const handleSave = async () => {
+        try {
+            await updateUser({ name });
+            alert("Settings saved!");
+        } catch (err) {
+            alert("Error saving: " + err.message);
+        }
+    };
+
+    if (loading) return <div className="p-10">Loading settings...</div>;
+    if (!user) return <div className="p-10">Please log in.</div>;
 
     return (
         <div>
@@ -26,20 +46,13 @@ export default function Settings() {
                             <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Child's Name</label>
                             <input
                                 type="text"
-                                value={user.name}
-                                onChange={(e) => updateUser({ name: e.target.value })}
+                                value={name}
+                                onChange={handleNameChange}
+                                placeholder={user?.user_metadata?.full_name || "Enter Name"}
                                 className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors"
                             />
                         </div>
-                        <div>
-                            <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Age</label>
-                            <input
-                                type="number"
-                                value={user.age}
-                                onChange={(e) => updateUser({ age: parseInt(e.target.value) || 0 })}
-                                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors"
-                            />
-                        </div>
+                        {/* Removed 'Age' for now as it's not in Auth Metadata by default */}
                     </div>
                 </div>
 
@@ -72,7 +85,7 @@ export default function Settings() {
                     </div>
                 </div>
 
-                <button className="btn-primary w-full shadow-lg shadow-pink-200">Save Changes</button>
+                <button onClick={handleSave} className="btn-primary w-full shadow-lg shadow-pink-200">Save Changes</button>
 
             </div>
         </div>

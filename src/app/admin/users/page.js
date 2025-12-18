@@ -1,5 +1,5 @@
 "use client";
-import { Search, Mail, User, Calendar, MoreVertical, Loader2 } from 'lucide-react';
+import { Search, Mail, User, Calendar, MoreVertical, Loader2, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
@@ -23,6 +23,17 @@ export default function AdminUsers() {
         }
         fetchUsers();
     }, []);
+
+    const handleDelete = async (id) => {
+        if (!confirm("Are you sure? This deletes their profile data (not their login).")) return;
+        try {
+            const { error } = await supabase.from('profiles').delete().eq('id', id);
+            if (error) throw error;
+            setUsers(prev => prev.filter(u => u.id !== id));
+        } catch (err) {
+            alert("Error deleting profile: " + err.message);
+        }
+    };
 
     const formatDate = (dateStr) => {
         return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -103,6 +114,12 @@ export default function AdminUsers() {
                                             <a href={`/admin/users/${user.id}/edit`} className="p-2 hover:bg-blue-50 text-gray-400 hover:text-blue-500 rounded-lg transition-colors">
                                                 <MoreVertical size={18} />
                                             </a>
+                                            <button
+                                                onClick={() => handleDelete(user.id)}
+                                                className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-lg transition-colors"
+                                            >
+                                                <Trash2 size={18} />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>

@@ -61,7 +61,6 @@ export default function EditUser() {
         if (error) {
             alert("Error saving: " + error.message);
         } else {
-        } else {
             // Force hard reload to guarantee fresh data
             window.location.href = '/admin/users';
         }

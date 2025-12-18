@@ -1,10 +1,38 @@
 "use client";
 import Link from 'next/link';
 import { Plus, Edit2, Trash2, Search, Loader2 } from 'lucide-react';
-import { useStories } from '@/hooks/useStories';
+import { supabase } from '@/lib/supabase';
+import { useState, useEffect } from 'react';
 
 export default function AdminStories() {
-    const { stories, loading } = useStories();
+    const [stories, setStories] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchStories() {
+            if (!supabase) return;
+            const { data, error } = await supabase
+                .from('stories')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) console.error(error);
+            else setStories(data || []);
+            setLoading(false);
+        }
+        fetchStories();
+    }, []);
+
+    const handleDelete = async (id) => {
+        if (!confirm("Delete this story?")) return;
+        try {
+            const { error } = await supabase.from('stories').delete().eq('id', id);
+            if (error) throw error;
+            setStories(prev => prev.filter(s => s.id !== id));
+        } catch (err) {
+            alert("Error deleting: " + err.message);
+        }
+    };
 
     return (
         <div>
@@ -72,7 +100,10 @@ export default function AdminStories() {
                                             <Link href={`/admin/stories/${story.id}/edit`} className="p-2 hover:bg-blue-50 text-gray-400 hover:text-blue-500 rounded-lg transition-colors">
                                                 <Edit2 size={16} />
                                             </Link>
-                                            <button className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-lg transition-colors">
+                                            <button
+                                                onClick={() => handleDelete(story.id)}
+                                                className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-lg transition-colors"
+                                            >
                                                 <Trash2 size={16} />
                                             </button>
                                         </div>

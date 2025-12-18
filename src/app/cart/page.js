@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useCart } from '@/context/CartContext';
@@ -8,6 +8,30 @@ import Link from 'next/link';
 
 export default function CartPage() {
     const { cart, removeFromCart, updateQuantity, totalPrice } = useCart();
+    const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+    const handleCheckout = async () => {
+        setCheckoutLoading(true);
+        try {
+            const response = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ items: cart }),
+            });
+
+            const data = await response.json();
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                alert("Something went wrong with checkout.");
+            }
+        } catch (error) {
+            console.error("Checkout Error:", error);
+            alert("Error initiating checkout.");
+        } finally {
+            setCheckoutLoading(false);
+        }
+    };
 
     return (
         <main className="min-h-screen bg-[#FFF5F9]">
@@ -101,10 +125,11 @@ export default function CartPage() {
                                 </div>
 
                                 <button
-                                    className="w-full py-4 bg-slate-900 text-white font-bold rounded-xl shadow-lg hover:bg-pink-500 hover:shadow-pink-300 transition-all active:scale-95 flex items-center justify-center gap-2"
-                                    onClick={() => alert("Checkout integration coming soon!")}
+                                    className="w-full py-4 bg-slate-900 text-white font-bold rounded-xl shadow-lg hover:bg-pink-500 hover:shadow-pink-300 transition-all active:scale-95 flex items-center justify-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                                    onClick={handleCheckout}
+                                    disabled={checkoutLoading}
                                 >
-                                    Checkout <ArrowRight size={20} />
+                                    {checkoutLoading ? 'Processing...' : <>Checkout <ArrowRight size={20} /></>}
                                 </button>
                                 <p className="text-center text-xs text-gray-400 mt-4 font-medium">
                                     Secure Checkout powered by Magic 🪄

@@ -6,8 +6,16 @@ import { supabase } from '@/lib/supabase';
 export default function AdminDashboard() {
     const [stats, setStats] = useState({ users: 0, stories: 0, products: 0 });
     const [loading, setLoading] = useState(true);
+    const [maintenance, setMaintenance] = useState(false);
 
     useEffect(() => {
+        // Check maintenance mode
+        const savedSettings = localStorage.getItem('app_settings');
+        if (savedSettings) {
+            const parsed = JSON.parse(savedSettings);
+            setMaintenance(parsed.maintenanceMode || false);
+        }
+
         async function fetchStats() {
             setLoading(true);
             if (!supabase) {
@@ -48,6 +56,10 @@ export default function AdminDashboard() {
                     {loading ? (
                         <span className="flex items-center gap-2 text-gray-400 font-bold text-sm">
                             <Loader2 size={16} className="animate-spin" /> Check System...
+                        </span>
+                    ) : maintenance ? (
+                        <span className="flex items-center gap-1 text-orange-500 font-bold text-sm">
+                            <XCircle size={16} /> Maintenance Mode
                         </span>
                     ) : (
                         <span className="flex items-center gap-1 text-green-600 font-bold text-sm">

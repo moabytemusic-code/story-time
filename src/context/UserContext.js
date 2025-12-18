@@ -60,6 +60,21 @@ export function UserProvider({ children }) {
         await supabase.auth.signOut();
     };
 
+    const updateUser = async (updates) => {
+        if (!supabase) return;
+        // 1. Update Supabase Auth Metadata (if name changed)
+        if (updates.name) {
+            const { data, error } = await supabase.auth.updateUser({
+                data: { full_name: updates.name }
+            });
+            if (error) throw error;
+            // The onAuthStateChange listener should pick up the change, but we can optimistically update if needed
+        }
+
+        // 2. If you wanted to update the 'profiles' table locally from here, you could too.
+        // For now, let's assume auth metadata is the source of truth for name.
+    };
+
     const updateSettings = (updates) => setSettings(prev => ({ ...prev, ...updates }));
 
     const checkAchievements = (storyId) => {
@@ -73,7 +88,7 @@ export function UserProvider({ children }) {
 
     return (
         <UserContext.Provider value={{
-            user, login, signup, logout, loading,
+            user, login, signup, logout, updateUser, loading,
             settings, updateSettings,
             stats, checkAchievements, unlockedAchievements
         }}>

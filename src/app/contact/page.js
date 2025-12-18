@@ -2,8 +2,39 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Mail, MessageCircle, Send } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Contact() {
+    const [formData, setFormData] = useState({ parentName: '', childName: '', email: '', message: '' });
+    const [sending, setSending] = useState(false);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setSending(true);
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            if (res.ok) {
+                alert("Message sent! We'll be in touch safely soon.");
+                setFormData({ parentName: '', childName: '', email: '', message: '' });
+            } else {
+                alert("Oops! Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            console.error("Contact Error:", error);
+            alert("Error sending message.");
+        } finally {
+            setSending(false);
+        }
+    };
+
     return (
         <main className="min-h-screen bg-[#FFF5F9]">
             <Navbar />
@@ -24,30 +55,65 @@ export default function Contact() {
                     {/* Contact Form */}
                     <div className="bg-white p-8 rounded-[40px] shadow-lg shadow-pink-100/50 border border-pink-50">
                         <h2 className="font-rounded font-bold text-2xl text-gray-800 mb-6">Send a Message</h2>
-                        <form className="space-y-6">
+                        <form className="space-y-6" onSubmit={handleSubmit}>
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Parent's Name</label>
-                                    <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors" placeholder="Jane Doe" />
+                                    <input
+                                        name="parentName"
+                                        value={formData.parentName}
+                                        onChange={handleChange}
+                                        type="text"
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors"
+                                        placeholder="Jane Doe"
+                                        required
+                                    />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Child's Name (Optional)</label>
-                                    <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors" placeholder="Alex" />
+                                    <input
+                                        name="childName"
+                                        value={formData.childName}
+                                        onChange={handleChange}
+                                        type="text"
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors"
+                                        placeholder="Alex"
+                                    />
                                 </div>
                             </div>
 
                             <div>
                                 <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Email Address</label>
-                                <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors" placeholder="jane@example.com" />
+                                <input
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    type="email"
+                                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors"
+                                    placeholder="jane@example.com"
+                                    required
+                                />
                             </div>
 
                             <div>
                                 <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Message</label>
-                                <textarea rows="4" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors resize-none" placeholder="Tell us what's on your mind..."></textarea>
+                                <textarea
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    rows="4"
+                                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors resize-none"
+                                    placeholder="Tell us what's on your mind..."
+                                    required
+                                ></textarea>
                             </div>
 
-                            <button type="button" className="btn-primary w-full flex items-center justify-center gap-2">
-                                <Send size={20} /> Send Message
+                            <button
+                                type="submit"
+                                disabled={sending}
+                                className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                            >
+                                {sending ? 'Sending...' : <><Send size={20} /> Send Message</>}
                             </button>
                         </form>
                     </div>

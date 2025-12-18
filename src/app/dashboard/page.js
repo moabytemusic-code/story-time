@@ -3,13 +3,16 @@ import { Play, Clock, Star, Loader2 } from 'lucide-react';
 import StoryCard from '@/components/StoryCard';
 import { usePlayer } from '@/context/PlayerContext';
 import { useStories } from '@/hooks/useStories';
+import { useUser } from '@/context/UserContext';
 
 export default function Dashboard() {
     const { playStory } = usePlayer();
-    const { stories, loading } = useStories();
+    const { stories, loading: storiesLoading } = useStories();
+    const { user, loading: userLoading } = useUser();
 
     // Pick the second story as "Featured" or fallback if empty
     const featuredStory = stories && stories.length > 1 ? stories[1] : (stories ? stories[0] : null);
+    const firstName = user?.user_metadata?.full_name?.split(' ')[0] || 'Explorer';
 
     return (
         <div className="max-w-5xl mx-auto">
@@ -17,7 +20,7 @@ export default function Dashboard() {
             {/* Header */}
             <header className="flex items-center justify-between mb-10">
                 <div>
-                    <h1 className="font-rounded font-extrabold text-3xl text-gray-800 mb-1">Welcome back, Alex! 👋</h1>
+                    <h1 className="font-rounded font-extrabold text-3xl text-gray-800 mb-1">Welcome back, {firstName}! 👋</h1>
                     <p className="text-gray-400 font-bold">Ready for a new adventure today?</p>
                 </div>
                 <div className="flex items-center gap-2 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full font-bold shadow-sm">
@@ -26,7 +29,7 @@ export default function Dashboard() {
                 </div>
             </header>
 
-            {loading ? (
+            {storiesLoading ? (
                 <div className="flex justify-center py-20 text-pink-400">
                     <Loader2 size={40} className="animate-spin" />
                 </div>

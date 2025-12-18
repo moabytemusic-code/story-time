@@ -61,8 +61,9 @@ export default function EditUser() {
         if (error) {
             alert("Error saving: " + error.message);
         } else {
-            router.refresh();
-            router.push('/admin/users');
+        } else {
+            // Force hard reload to guarantee fresh data
+            window.location.href = '/admin/users';
         }
         setSaving(false);
     };

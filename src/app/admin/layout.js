@@ -1,11 +1,12 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, BookOpen, Users, Settings, LogOut, Shield } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Users, Settings, LogOut, Shield, ShoppingBag } from 'lucide-react';
 
 const ADMIN_MENU = [
     { name: 'Dashboard', icon: <LayoutDashboard size={20} />, path: '/admin' },
     { name: 'Stories', icon: <BookOpen size={20} />, path: '/admin/stories' },
+    { name: 'Store', icon: <ShoppingBag size={20} />, path: '/admin/products' },
     { name: 'Users', icon: <Users size={20} />, path: '/admin/users' },
     { name: 'Settings', icon: <Settings size={20} />, path: '/admin/settings' },
 ];
@@ -34,8 +35,8 @@ export default function AdminLayout({ children }) {
                                     key={item.path}
                                     href={item.path}
                                     className={`flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${isActive
-                                            ? 'bg-pink-500 text-white shadow-lg shadow-pink-900/20'
-                                            : 'text-slate-400 hover:text-white hover:bg-white/10'
+                                        ? 'bg-pink-500 text-white shadow-lg shadow-pink-900/20'
+                                        : 'text-slate-400 hover:text-white hover:bg-white/10'
                                         }`}
                                 >
                                     {item.icon}

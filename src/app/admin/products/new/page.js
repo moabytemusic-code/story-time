@@ -45,8 +45,9 @@ export default function NewProduct() {
             router.push('/admin/products');
 
         } catch (err) {
-            console.error(err);
-            alert("Error creating product: " + err.message);
+            console.error("Submission Error Details:", err);
+            const msg = err.message || err.error_description || "Unknown Error";
+            alert("Error creating product: " + msg);
         } finally {
             setLoading(false);
         }

@@ -11,8 +11,18 @@ const ADMIN_MENU = [
     { name: 'Settings', icon: <Settings size={20} />, path: '/admin/settings' },
 ];
 
+import { useRouter } from 'next/navigation';
+import { useUser } from '@/context/UserContext';
+
 export default function AdminLayout({ children }) {
     const pathname = usePathname();
+    const router = useRouter();
+    const { logout } = useUser();
+
+    const handleExit = async () => {
+        await logout();
+        router.push('/login');
+    };
 
     return (
         <div className="min-h-screen bg-gray-50 flex font-nunito">
@@ -48,7 +58,7 @@ export default function AdminLayout({ children }) {
                 </div>
 
                 <div className="mt-auto p-6 border-t border-white/10">
-                    <button className="flex items-center gap-3 text-slate-400 hover:text-white font-bold transition-colors">
+                    <button onClick={handleExit} className="flex items-center gap-3 text-slate-400 hover:text-white font-bold transition-colors w-full text-left">
                         <LogOut size={20} />
                         Exit Admin
                     </button>

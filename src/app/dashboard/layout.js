@@ -16,6 +16,7 @@ const MENU_ITEMS = [
 
 export default function DashboardLayout({ children }) {
     const pathname = usePathname();
+    const { logout } = useUser();
 
     return (
         <div className="min-h-screen bg-[#FFF5F9] flex">
@@ -53,7 +54,10 @@ export default function DashboardLayout({ children }) {
                 </nav>
 
                 <div className="p-4 border-t border-pink-50">
-                    <button className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-gray-400 hover:text-red-400 hover:bg-red-50 transition-all">
+                    <button
+                        onClick={logout}
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold text-gray-400 hover:text-red-400 hover:bg-red-50 transition-all"
+                    >
                         <LogOut size={20} />
                         Log Out
                     </button>

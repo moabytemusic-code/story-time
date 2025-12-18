@@ -22,15 +22,7 @@ export async function POST(req) {
             return NextResponse.json({ message: "User ID is required" }, { status: 400 });
         }
 
-        // 1. Delete from auth.users (This automatically cascades if set up correctly, but cleaner to verify)
-        const { error: authError } = await supabaseAdmin.auth.admin.deleteUser(userId);
-
-        if (authError) {
-            console.error("Auth Delete Error:", authError);
-            return NextResponse.json({ message: "Error deleting auth user: " + authError.message }, { status: 500 });
-        }
-
-        // 2. Delete from public.profiles (If no cascade)
+        // 1. Delete from public.profiles FIRST (to clear foreign keys if no cascade)
         const { error: profileError } = await supabaseAdmin
             .from('profiles')
             .delete()
@@ -38,7 +30,15 @@ export async function POST(req) {
 
         if (profileError) {
             console.error("Profile Delete Error:", profileError);
-            // Don't fail the request if auth was deleted, just warn
+            return NextResponse.json({ message: "Error deleting public profile: " + profileError.message }, { status: 500 });
+        }
+
+        // 2. Delete from auth.users
+        const { error: authError } = await supabaseAdmin.auth.admin.deleteUser(userId);
+
+        if (authError) {
+            console.error("Auth Delete Error:", authError);
+            return NextResponse.json({ message: "Error deleting auth user: " + authError.message }, { status: 500 });
         }
 
         return NextResponse.json({ message: "User deleted successfully" });

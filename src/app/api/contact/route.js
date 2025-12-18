@@ -11,6 +11,11 @@ export async function POST(req) {
             return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
         }
 
+        console.log("Brevo Config:", {
+            user: process.env.BREVO_USER,
+            keyLength: process.env.BREVO_SMTP_KEY ? process.env.BREVO_SMTP_KEY.length : 'MISSING'
+        });
+
         // Configure Brevo (Sendinblue) Transporter
         const transporter = nodemailer.createTransport({
             host: "smtp-relay.brevo.com",

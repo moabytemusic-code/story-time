@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image';
+import RevolvingImages from '@/components/RevolvingImages';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Heart, Star, Sparkles, BookOpen } from 'lucide-react';
@@ -29,12 +30,12 @@ export default function About() {
 
                     <div className="flex-1 relative">
                         <div className="w-full aspect-square bg-[#FFE8F0] rounded-[60px] relative overflow-hidden shadow-lg border-4 border-white">
-                            <Image
-                                src="/images/ms-erica.jpg"
-                                alt="Ms. Erica"
-                                fill
-                                className="object-cover"
-                                priority
+                            <RevolvingImages
+                                images={[
+                                    '/images/ms-erica.jpg',
+                                    '/images/ms-erica-2.jpg',
+                                    '/images/ms-erica-3.png'
+                                ]}
                             />
                         </div>
                         {/* Decorative blobs */}

@@ -84,17 +84,17 @@ export default function NewStory() {
 
                     <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-slate-500 uppercase">Story Title</label>
+                            <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Story Title</label>
                             <input name="title" type="text" placeholder="e.g. The Brave Little Lion" className="input-field" required />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-slate-500 uppercase">Category tag</label>
+                            <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Category tag</label>
                             <input name="tag" type="text" placeholder="e.g. Animals" className="input-field" required />
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm font-bold text-slate-500 uppercase">Description</label>
+                        <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Description</label>
                         <textarea name="desc" rows="4" placeholder="A short summary..." className="input-field resize-none"></textarea>
                     </div>
                 </div>

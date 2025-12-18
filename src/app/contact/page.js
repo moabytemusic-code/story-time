@@ -27,22 +27,22 @@ export default function Contact() {
                         <form className="space-y-6">
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Parent's Name</label>
+                                    <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Parent's Name</label>
                                     <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors" placeholder="Jane Doe" />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Child's Name (Optional)</label>
+                                    <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Child's Name (Optional)</label>
                                     <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors" placeholder="Alex" />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Email Address</label>
+                                <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Email Address</label>
                                 <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors" placeholder="jane@example.com" />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Message</label>
+                                <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Message</label>
                                 <textarea rows="4" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 font-bold text-gray-700 focus:outline-none focus:border-pink-500 transition-colors resize-none" placeholder="Tell us what's on your mind..."></textarea>
                             </div>
 

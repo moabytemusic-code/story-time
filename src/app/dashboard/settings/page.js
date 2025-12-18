@@ -43,7 +43,7 @@ export default function Settings() {
 
                     <div className="space-y-4">
                         <div>
-                            <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-wide">Child's Name</label>
+                            <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Child's Name</label>
                             <input
                                 type="text"
                                 value={name}

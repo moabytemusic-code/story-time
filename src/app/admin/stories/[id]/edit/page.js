@@ -111,7 +111,7 @@ export default function EditStory() {
 
                     <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-slate-500 uppercase">Story Title</label>
+                            <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Story Title</label>
                             <input
                                 name="title"
                                 type="text"
@@ -122,7 +122,7 @@ export default function EditStory() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-slate-500 uppercase">Category tag</label>
+                            <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Category tag</label>
                             <input
                                 name="tag"
                                 type="text"
@@ -135,11 +135,11 @@ export default function EditStory() {
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-sm font-bold text-slate-500 uppercase">Description</label>
+                        <label className="block text-xs font-extrabold text-pink-500 uppercase tracking-widest mb-2">Description</label>
                         <textarea
                             name="desc"
                             rows="4"
-                            value={story.desc}
+                            value={story.description}
                             onChange={handleChange}
                             className="input-field resize-none"
                         ></textarea>

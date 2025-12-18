@@ -61,6 +61,7 @@ export default function EditUser() {
         if (error) {
             alert("Error saving: " + error.message);
         } else {
+            router.refresh();
             router.push('/admin/users');
         }
         setSaving(false);

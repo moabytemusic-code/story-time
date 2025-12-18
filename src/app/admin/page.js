@@ -1,27 +1,39 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { Users, BookOpen, PlayCircle, HardDrive, CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { Users, BookOpen, PlayCircle, HardDrive, CheckCircle, XCircle, Loader2, ShoppingBag } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 export default function AdminDashboard() {
-    const [connectionStatus, setConnectionStatus] = useState("checking"); // checking, connected, error, nokeys
+    const [stats, setStats] = useState({ users: 0, stories: 0, products: 0 });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function checkConnection() {
+        async function fetchStats() {
+            setLoading(true);
             if (!supabase) {
-                setConnectionStatus("nokeys");
+                setLoading(false);
                 return;
             }
+
             try {
-                const { count, error } = await supabase.from('stories').select('*', { count: 'exact', head: true });
-                if (error) throw error;
-                setConnectionStatus("connected");
-            } catch (err) {
-                console.error("Supabase Conn/Check Error:", err);
-                setConnectionStatus("error");
+                const [users, stories, products] = await Promise.all([
+                    supabase.from('profiles').select('*', { count: 'exact', head: true }),
+                    supabase.from('stories').select('*', { count: 'exact', head: true }),
+                    supabase.from('products').select('*', { count: 'exact', head: true }),
+                ]);
+
+                setStats({
+                    users: users.count || 0,
+                    stories: stories.count || 0,
+                    products: products.count || 0,
+                });
+            } catch (error) {
+                console.error("Error fetching stats:", error);
+            } finally {
+                setLoading(false);
             }
         }
-        checkConnection();
+        fetchStats();
     }, []);
 
     return (
@@ -32,33 +44,23 @@ export default function AdminDashboard() {
                     <p className="text-slate-500">Welcome back, Admin.</p>
                 </div>
 
-                {/* Status Indicator */}
                 <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-gray-100">
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">System Status:</span>
-                    {connectionStatus === 'checking' && <Loader2 size={16} className="animate-spin text-blue-500" />}
-                    {connectionStatus === 'connected' && (
+                    {loading ? (
+                        <span className="flex items-center gap-2 text-gray-400 font-bold text-sm">
+                            <Loader2 size={16} className="animate-spin" /> Check System...
+                        </span>
+                    ) : (
                         <span className="flex items-center gap-1 text-green-600 font-bold text-sm">
-                            <CheckCircle size={16} /> Online
-                        </span>
-                    )}
-                    {connectionStatus === 'error' && (
-                        <span className="flex items-center gap-1 text-red-500 font-bold text-sm">
-                            <XCircle size={16} /> Connection Failed
-                        </span>
-                    )}
-                    {connectionStatus === 'nokeys' && (
-                        <span className="flex items-center gap-1 text-orange-500 font-bold text-sm">
-                            <XCircle size={16} /> Keys Missing
+                            <CheckCircle size={16} /> System Online
                         </span>
                     )}
                 </div>
             </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <StatCard title="Total Users" value="1,234" icon={<Users className="text-blue-500" />} />
-                <StatCard title="Active Stories" value="48" icon={<BookOpen className="text-pink-500" />} />
-                <StatCard title="Total Plays" value="85.2k" icon={<PlayCircle className="text-green-500" />} />
-                <StatCard title="Storage Used" value="4.2 GB" icon={<HardDrive className="text-purple-500" />} />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <StatCard title="Total Users" value={stats.users} icon={<Users className="text-blue-500" />} />
+                <StatCard title="Active Stories" value={stats.stories} icon={<BookOpen className="text-pink-500" />} />
+                <StatCard title="Store Products" value={stats.products} icon={<ShoppingBag className="text-purple-500" />} />
             </div>
 
             <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">

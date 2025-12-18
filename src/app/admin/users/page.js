@@ -24,14 +24,31 @@ export default function AdminUsers() {
         fetchUsers();
     }, []);
 
+    const [deleteLoading, setDeleteLoading] = useState(null);
+
     const handleDelete = async (id) => {
-        if (!confirm("Are you sure? This deletes their profile data (not their login).")) return;
+        if (!confirm("Are you sure? This will delete the user's LOGIN and PROFILE permanently.")) return;
+        setDeleteLoading(id);
+
         try {
-            const { error } = await supabase.from('profiles').delete().eq('id', id);
-            if (error) throw error;
+            const response = await fetch('/api/admin/users/delete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: id }),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || "Failed to delete user");
+            }
+
             setUsers(prev => prev.filter(u => u.id !== id));
+            alert("User deleted successfully.");
         } catch (err) {
-            alert("Error deleting profile: " + err.message);
+            console.error("Delete Error:", err);
+            alert("Error deleting user: " + err.message);
+        } finally {
+            setDeleteLoading(null);
         }
     };
 
@@ -116,9 +133,10 @@ export default function AdminUsers() {
                                             </a>
                                             <button
                                                 onClick={() => handleDelete(user.id)}
-                                                className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-lg transition-colors"
+                                                disabled={deleteLoading === user.id}
+                                                className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-lg transition-colors disabled:opacity-50"
                                             >
-                                                <Trash2 size={18} />
+                                                {deleteLoading === user.id ? <Loader2 size={18} className="animate-spin" /> : <Trash2 size={18} />}
                                             </button>
                                         </div>
                                     </td>

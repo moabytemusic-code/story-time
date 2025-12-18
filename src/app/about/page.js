@@ -1,12 +1,42 @@
 "use client";
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import RevolvingImages from '@/components/RevolvingImages';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Heart, Star, Sparkles, BookOpen } from 'lucide-react';
 import Link from 'next/link';
+import { supabase } from '@/lib/supabase';
 
 export default function About() {
+    const [carouselImages, setCarouselImages] = useState([]);
+
+    useEffect(() => {
+        if (!supabase) return;
+
+        const fetchImages = async () => {
+            const { data, error } = await supabase.storage.from('uploads').list('hero-carousel', {
+                limit: 100,
+                offset: 0,
+                sortBy: { column: 'created_at', order: 'desc' },
+            });
+
+            if (!error && data) {
+                const imagesWithUrls = data
+                    .filter(file => !file.name.startsWith('.'))
+                    .map(file => {
+                        const { data: urlData } = supabase.storage
+                            .from('uploads')
+                            .getPublicUrl(`hero-carousel/${file.name}`);
+                        return urlData.publicUrl;
+                    });
+                setCarouselImages(imagesWithUrls);
+            }
+        }
+
+        fetchImages();
+    }, []);
+
     return (
         <main className="min-h-screen bg-[#FFF5F9]">
             <Navbar />
@@ -31,10 +61,9 @@ export default function About() {
                     <div className="flex-1 relative">
                         <div className="w-full aspect-square bg-[#FFE8F0] rounded-[60px] relative overflow-hidden shadow-lg border-4 border-white">
                             <RevolvingImages
-                                images={[
+                                images={carouselImages.length > 0 ? carouselImages : [
                                     '/images/ms-erica.jpg',
-                                    '/images/ms-erica-2.jpg',
-                                    '/images/ms-erica-3.png'
+                                    '/images/ms-erica-2.jpg'
                                 ]}
                             />
                         </div>

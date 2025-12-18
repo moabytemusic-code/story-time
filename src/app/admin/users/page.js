@@ -86,7 +86,7 @@ export default function AdminUsers() {
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className={`px-2 py-1 rounded text-xs font-bold ${user.plan === 'Family' ? 'bg-purple-100 text-purple-600' :
-                                                user.plan === 'Adventurer' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
+                                            user.plan === 'Adventurer' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
                                             }`}>
                                             {user.plan || 'Free'}
                                         </span>
@@ -99,9 +99,11 @@ export default function AdminUsers() {
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-right">
-                                        <button className="text-gray-400 hover:text-slate-600">
-                                            <MoreVertical size={18} />
-                                        </button>
+                                        <div className="flex items-center justify-end gap-2">
+                                            <a href={`/admin/users/${user.id}/edit`} className="p-2 hover:bg-blue-50 text-gray-400 hover:text-blue-500 rounded-lg transition-colors">
+                                                <MoreVertical size={18} />
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}

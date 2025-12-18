@@ -7,6 +7,7 @@ import { supabase, uploadFile } from '@/lib/supabase';
 export default function NewStory() {
     const [audioFile, setAudioFile] = useState(null);
     const [imageFile, setImageFile] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

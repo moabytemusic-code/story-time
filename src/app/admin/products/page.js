@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { Plus, Search, Filter, MoreVertical, Loader2, Package } from 'lucide-react';
+import { Plus, Search, Filter, MoreVertical, Loader2, Package, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 
@@ -22,6 +22,21 @@ export default function AdminProducts() {
         }
         fetchProducts();
     }, []);
+
+    const handleDelete = async (id) => {
+        if (!confirm("Are you sure you want to delete this product?")) return;
+
+        try {
+            const { error } = await supabase.from('products').delete().eq('id', id);
+            if (error) throw error;
+
+            // Remove from UI
+            setProducts(prev => prev.filter(p => p.id !== id));
+        } catch (err) {
+            console.error(err);
+            alert("Error deleting product: " + err.message);
+        }
+    };
 
     return (
         <div>
@@ -97,6 +112,12 @@ export default function AdminProducts() {
                                             <Link href={`/admin/products/${product.id}/edit`} className="p-2 hover:bg-blue-50 text-gray-400 hover:text-blue-500 rounded-lg transition-colors">
                                                 <MoreVertical size={18} />
                                             </Link>
+                                            <button
+                                                onClick={() => handleDelete(product.id)}
+                                                className="p-2 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-lg transition-colors"
+                                            >
+                                                <Trash2 size={18} />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>

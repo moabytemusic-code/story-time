@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { ShoppingBag, Loader2, Star, ShoppingCart } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { motion } from 'framer-motion';
+import { useCart } from '@/context/CartContext';
 
 export default function Shop() {
     const [products, setProducts] = useState([]);
@@ -78,6 +79,8 @@ export default function Shop() {
 }
 
 function ProductCard({ product }) {
+    const { addToCart } = useCart();
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -85,7 +88,7 @@ function ProductCard({ product }) {
             viewport={{ once: true }}
             className="group bg-white p-6 rounded-[32px] border border-pink-100 shadow-sm hover:shadow-xl hover:shadow-pink-100/50 transition-all hover:-translate-y-2 flex flex-col h-full"
         >
-            {/* Image Area */}
+            {/* ... image area ... */}
             <div className="relative aspect-square bg-gray-50 rounded-2xl mb-6 overflow-hidden flex items-center justify-center">
                 {product.image_url ? (
                     <img
@@ -129,7 +132,10 @@ function ProductCard({ product }) {
                     <span className="font-rounded font-extrabold text-2xl text-slate-800">
                         ${product.price}
                     </span>
-                    <button className="w-12 h-12 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-pink-500 transition-colors shadow-lg hover:shadow-pink-300">
+                    <button
+                        onClick={() => addToCart(product)}
+                        className="w-12 h-12 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-pink-500 transition-colors shadow-lg hover:shadow-pink-300 active:scale-95"
+                    >
                         <ShoppingCart size={20} />
                     </button>
                 </div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ShoppingBag, Loader2, Star, ShoppingCart } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { motion } from 'framer-motion';
+import { useCart } from '@/context/CartContext';
 
 export default function DashboardShop() {
     const [products, setProducts] = useState([]);
@@ -54,6 +55,8 @@ export default function DashboardShop() {
 }
 
 function ProductCard({ product }) {
+    const { addToCart } = useCart();
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -94,7 +97,10 @@ function ProductCard({ product }) {
                     <span className="font-rounded font-extrabold text-xl text-slate-800">
                         ${product.price}
                     </span>
-                    <button className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-pink-500 transition-colors shadow-lg hover:shadow-pink-300">
+                    <button
+                        onClick={() => addToCart(product)}
+                        className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center hover:bg-pink-500 transition-colors shadow-lg hover:shadow-pink-300 active:scale-95"
+                    >
                         <ShoppingCart size={18} />
                     </button>
                 </div>

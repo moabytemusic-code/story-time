@@ -12,6 +12,7 @@ export default function Stories() {
     const { stories, loading } = useStories();
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedTag, setSelectedTag] = useState("All");
+    const [selectedAge, setSelectedAge] = useState("All");
 
     // Extract unique tags
     const tags = useMemo(() => {
@@ -28,9 +29,13 @@ export default function Stories() {
                 story.desc.toLowerCase().includes(searchQuery.toLowerCase());
             const matchesTag = selectedTag === "All" || story.tag === selectedTag;
 
-            return matchesSearch && matchesTag;
+            // Check if story.age matches selectedAge (e.g. "0-4" === "0-4")
+            // Or if "All" is selected
+            const matchesAge = selectedAge === "All" || story.age === selectedAge;
+
+            return matchesSearch && matchesTag && matchesAge;
         });
-    }, [searchQuery, selectedTag, stories]);
+    }, [searchQuery, selectedTag, selectedAge, stories]);
 
     return (
         <main className="min-h-screen bg-[#FFF5F9]">
@@ -40,14 +45,42 @@ export default function Stories() {
                 <h1 className="font-rounded font-extrabold text-4xl md:text-6xl text-pink-500 mb-4">Magical Audio Stories</h1>
                 <p className="text-gray-500 text-lg max-w-xl mx-auto mb-10">Click play to start an adventure. Perfect for car rides, quiet time, and bedtime.</p>
 
-                {/* Search & Filter Bar */}
+                {/* Age Selector (Primary Filter) */}
+                <div className="max-w-4xl mx-auto mb-12">
+                    <h3 className="font-bold text-gray-400 uppercase tracking-widest text-sm mb-6">Who is listening today?</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <AgeButton
+                            label="Little Ears"
+                            age="0-4"
+                            color="bg-blue-100 text-blue-600 ring-blue-300"
+                            selected={selectedAge === "0-4"}
+                            onClick={() => setSelectedAge(selectedAge === "0-4" ? "All" : "0-4")}
+                        />
+                        <AgeButton
+                            label="Growing Minds"
+                            age="4-7"
+                            color="bg-green-100 text-green-600 ring-green-300"
+                            selected={selectedAge === "4-7"}
+                            onClick={() => setSelectedAge(selectedAge === "4-7" ? "All" : "4-7")}
+                        />
+                        <AgeButton
+                            label="Big Dreamers"
+                            age="7-9"
+                            color="bg-purple-100 text-purple-600 ring-purple-300"
+                            selected={selectedAge === "7-9"}
+                            onClick={() => setSelectedAge(selectedAge === "7-9" ? "All" : "7-9")}
+                        />
+                    </div>
+                </div>
+
+                {/* Search & Filter Bar (Secondary) */}
                 <div className="max-w-2xl mx-auto space-y-6">
 
                     {/* Search Input */}
                     <div className="relative">
                         <input
                             type="text"
-                            placeholder="Find a story about dragons, bravelions..."
+                            placeholder="Find a story about dragons, bravery..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="w-full bg-white border border-pink-100 rounded-full py-4 pl-14 pr-12 text-lg font-bold text-gray-700 shadow-sm focus:outline-none focus:border-pink-500 focus:ring-4 focus:ring-pink-100 transition-all placeholder:text-gray-300"
@@ -66,13 +99,22 @@ export default function Stories() {
                     {/* Filter Tags */}
                     {!loading && (
                         <div className="flex flex-wrap items-center justify-center gap-2">
-                            {tags.map(tag => (
+                            <button
+                                onClick={() => setSelectedTag("All")}
+                                className={`px-4 py-2 rounded-full font-bold text-sm transition-all ${selectedTag === "All"
+                                    ? 'bg-gray-800 text-white shadow-lg'
+                                    : 'bg-white text-gray-500 border border-gray-100 hover:border-gray-200'
+                                    }`}
+                            >
+                                All Tags
+                            </button>
+                            {tags.filter(t => t !== "All").map(tag => (
                                 <button
                                     key={tag}
                                     onClick={() => setSelectedTag(tag)}
                                     className={`px-4 py-2 rounded-full font-bold text-sm transition-all ${selectedTag === tag
-                                            ? 'bg-pink-500 text-white shadow-lg shadow-pink-200 scale-105'
-                                            : 'bg-white text-gray-500 border border-gray-100 hover:border-pink-200 hover:text-pink-400'
+                                        ? 'bg-pink-500 text-white shadow-lg shadow-pink-200 scale-105'
+                                        : 'bg-white text-gray-500 border border-gray-100 hover:border-pink-200 hover:text-pink-400'
                                         }`}
                                 >
                                     {tag}
@@ -114,4 +156,33 @@ export default function Stories() {
             <Footer />
         </main>
     );
+}
+
+function AgeButton({ label, age, color, selected, onClick }) {
+    return (
+        <button
+            onClick={onClick}
+            className={`
+                group relative flex flex-col items-center justify-center p-6 rounded-3xl border-2 transition-all duration-300
+                ${selected
+                    ? `border-transparent ${color} shadow-lg ring-2 ring-offset-2 scale-105`
+                    : 'border-gray-100 bg-white hover:border-gray-200 hover:-translate-y-1 hover:shadow-md'
+                }
+            `}
+        >
+            <span className="text-xl mb-1 filter grayscale group-hover:grayscale-0 transition-all">
+                {age === '0-4' ? '👶' : age === '4-7' ? '👧' : '🚀'}
+            </span>
+            <span className={`font-bold text-lg mb-1 ${selected ? 'text-current' : 'text-gray-700'}`}>{label}</span>
+            <span className={`text-xs font-bold uppercase tracking-wide ${selected ? 'opacity-75' : 'text-gray-400'}`}>Ages {age}</span>
+
+            {selected && (
+                <div className="absolute top-3 right-3 text-current animate-bounce">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            )}
+        </button>
+    )
 }

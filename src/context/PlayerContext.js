@@ -16,8 +16,10 @@ export function PlayerProvider({ children }) {
     // Get checkAchievements from UserContext
     const { checkAchievements } = useUser();
 
-    const playStory = (story) => {
-        console.log("Playing story:", story.title, "at URL:", story.audioUrl);
+    const [isBuffering, setIsBuffering] = useState(false);
+
+    const playStory = async (story) => {
+        console.log("Requesting story:", story.title);
 
         if (currentStory?.id === story.id) {
             togglePlay();
@@ -26,30 +28,45 @@ export function PlayerProvider({ children }) {
 
         if (audio) {
             audio.pause();
-            audio.currentTime = 0; // Reset previous
+            audio.currentTime = 0;
+        }
+
+        setIsBuffering(true);
+        setIsPlaying(true); // Optimistic UI
+        setCurrentStory(story);
+
+        // Pre-check if file exists
+        try {
+            const check = await fetch(story.audioUrl, { method: 'HEAD' });
+            if (!check.ok) {
+                console.error(`Audio file not found (Status ${check.status}): ${story.audioUrl}`);
+                alert(`Error: Audio file not found (404). The file '${story.audioUrl}' might not be deployed yet.`);
+                setIsPlaying(false);
+                setIsBuffering(false);
+                return;
+            }
+        } catch (netErr) {
+            console.error("Network check failed:", netErr);
+            // We continue anyway to let Audio object try, in case fetch failed for CORS/other reasons
         }
 
         try {
             const newAudio = new Audio(story.audioUrl);
-            // Default volume to 1.0
             newAudio.volume = 1.0;
+
+            newAudio.addEventListener('waiting', () => setIsBuffering(true));
+            newAudio.addEventListener('playing', () => setIsBuffering(false));
+            newAudio.addEventListener('canplay', () => setIsBuffering(false));
 
             newAudio.addEventListener('error', (e) => {
                 const error = e.target.error;
-                console.error("Audio playback error:", error);
-
-                let errorMessage = "Unknown error";
-                if (error.code === error.MEDIA_ERR_ABORTED) errorMessage = "Aborted";
-                if (error.code === error.MEDIA_ERR_NETWORK) errorMessage = "Network Error";
-                if (error.code === error.MEDIA_ERR_DECODE) errorMessage = "Decode Error (Corrupt file?)";
-                if (error.code === error.MEDIA_ERR_SRC_NOT_SUPPORTED) errorMessage = "Source Not Supported (404 Not Found?)";
-
-                alert(`Error playing story: ${errorMessage}. Check console for details.`);
+                console.error("Audio playback error:", error, error.message);
+                alert(`Playback Error: ${error.message || "Cannot load audio"}. Code: ${error.code}`);
                 setIsPlaying(false);
+                setIsBuffering(false);
             });
 
             newAudio.addEventListener('loadedmetadata', () => {
-                console.log("Audio metadata loaded. Duration:", newAudio.duration);
                 setDuration(newAudio.duration);
             });
 
@@ -61,7 +78,6 @@ export function PlayerProvider({ children }) {
             });
 
             newAudio.addEventListener('ended', () => {
-                console.log("Audio ended");
                 setIsPlaying(false);
                 setProgress(0);
                 setCurrentTime(0);
@@ -69,23 +85,24 @@ export function PlayerProvider({ children }) {
             });
 
             setAudio(newAudio);
-            setCurrentStory(story);
-            setIsPlaying(true);
 
             const playPromise = newAudio.play();
             if (playPromise !== undefined) {
                 playPromise
                     .then(() => {
-                        console.log("Playback started successfully");
+                        console.log("Playback started");
                     })
                     .catch(e => {
-                        console.error("Playback failed (Autoplay policy?):", e);
+                        console.error("Autoplay/Playback failed:", e);
                         setIsPlaying(false);
+                        setIsBuffering(false);
                     });
             }
 
         } catch (err) {
             console.error("Error creating Audio object:", err);
+            setIsBuffering(false);
+            setIsPlaying(false);
         }
     };
 
@@ -99,12 +116,8 @@ export function PlayerProvider({ children }) {
             const playPromise = audio.play();
             if (playPromise !== undefined) {
                 playPromise
-                    .then(() => {
-                        setIsPlaying(true);
-                    })
-                    .catch(e => {
-                        console.error("Resume failed:", e);
-                    });
+                    .then(() => setIsPlaying(true))
+                    .catch(e => console.error("Resume failed:", e));
             }
         }
     };
@@ -128,7 +141,7 @@ export function PlayerProvider({ children }) {
     };
 
     return (
-        <PlayerContext.Provider value={{ currentStory, isPlaying, playStory, togglePlay, stopStory, progress, currentTime, duration, seek }}>
+        <PlayerContext.Provider value={{ currentStory, isPlaying, isBuffering, playStory, togglePlay, stopStory, progress, currentTime, duration, seek }}>
             {children}
         </PlayerContext.Provider>
     );

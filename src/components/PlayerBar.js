@@ -1,6 +1,6 @@
 "use client";
 import { usePlayer } from '@/context/PlayerContext';
-import { Play, Pause, X, SkipBack, SkipForward, Volume2 } from 'lucide-react';
+import { Play, Pause, X, SkipBack, SkipForward, Volume2, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function PlayerBar() {
@@ -44,7 +44,13 @@ export default function PlayerBar() {
                             onClick={togglePlay}
                             className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
                         >
-                            {isPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" className="ml-1" />}
+                            {isBuffering ? (
+                                <Loader2 size={24} className="animate-spin" />
+                            ) : isPlaying ? (
+                                <Pause size={24} fill="currentColor" />
+                            ) : (
+                                <Play size={24} fill="currentColor" className="ml-1" />
+                            )}
                         </button>
                         <button className="text-gray-400 hover:text-pink-500 transition-colors">
                             <SkipForward size={20} />

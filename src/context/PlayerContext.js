@@ -82,8 +82,9 @@ export function PlayerProvider({ children }) {
 
             newAudio.addEventListener('timeupdate', () => {
                 setCurrentTime(newAudio.currentTime);
-                if (newAudio.duration) {
-                    setProgress((newAudio.currentTime / newAudio.duration) * 100);
+                if (newAudio.duration && isFinite(newAudio.duration) && newAudio.duration > 0) {
+                    const pct = (newAudio.currentTime / newAudio.duration) * 100;
+                    setProgress(isNaN(pct) ? 0 : pct);
                 }
             });
 

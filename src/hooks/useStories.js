@@ -31,16 +31,22 @@ export function useStories() {
                         setStories(MOCK_STORIES);
                     } else {
                         try {
-                            // Normalize Supabase data (snake_case -> camelCase)
-                            const normalizedStories = data.map(s => ({
-                                ...s,
-                                audioUrl: s.audio_url || s.audioUrl,
-                                // Ensure critical fields exist to prevent rendering crashes
-                                tag: s.tag || 'Story',
-                                title: s.title || 'Untitled Story',
-                                color: s.color || 'bg-gray-100',
-                                icon: s.icon || '📖'
-                            }));
+                            const normalizedStories = data.map(s => {
+                                // Find matching local story to retrieve the correct local file path
+                                // This overrides Supabase DB URLs which might be stale (SoundHelix)
+                                const localMatch = MOCK_STORIES.find(m => m.id === s.id);
+                                const correctAudioUrl = localMatch ? localMatch.audioUrl : (s.audio_url || s.audioUrl);
+
+                                return {
+                                    ...s,
+                                    audioUrl: correctAudioUrl,
+                                    tag: s.tag || 'Story',
+                                    title: s.title || 'Untitled Story',
+                                    color: s.color || 'bg-gray-100',
+                                    icon: s.icon || '📖',
+                                    age: localMatch?.age || s.age || '4-7' // Ensure age is synced too
+                                };
+                            });
                             setStories(normalizedStories);
                         } catch (mapErr) {
                             console.error("Error normalizing stories:", mapErr);

@@ -90,6 +90,37 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Founder Trust Section */}
+            <section className="py-20 px-6 bg-[#FEFCE8] relative">
+                <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                    <div className="w-full md:w-1/3 relative">
+                        <div className="aspect-square bg-pink-200 rounded-[40px] rotate-3 overflow-hidden border-4 border-white shadow-lg relative">
+                            <img
+                                src="/images/ms-erica-portrait.png"
+                                alt="Ms. Erica reading a book"
+                                className="object-cover w-full h-full"
+                            />
+                        </div>
+                    </div>
+                    <div className="w-full md:w-2/3 text-center md:text-left">
+                        <h2 className="font-rounded font-bold text-3xl md:text-4xl text-gray-800 mb-4">
+                            "Hello, I'm Ms. Erica!"
+                        </h2>
+                        <h3 className="text-pink-500 font-bold text-lg mb-6 uppercase tracking-wide">
+                            Educator • Storyteller • Mom
+                        </h3>
+                        <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                            I created <em>Story Time</em> because I saw how deeply children crave connection—visually, emotionally, and creatively. My stories aren't just entertainment; they are <strong>safe spaces</strong> for little hearts to explore big feelings.
+                        </p>
+                        <div className="bg-white/50 p-6 rounded-2xl border border-yellow-200 inline-block">
+                            <p className="text-gray-800 font-bold italic">
+                                "My promise: To nurture your child's imagination with kindness, inclusivity, and wonder in every word."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Featured Stories Section */}
             <section className="py-24 px-6 relative">
                 <div className="max-w-7xl mx-auto">

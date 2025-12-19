@@ -1,7 +1,7 @@
 "use client";
 import { usePlayer } from '@/context/PlayerContext';
 import { Play, Pause, X, SkipBack, SkipForward, Volume2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+// import { motion, AnimatePresence } from 'framer-motion';
 
 export default function PlayerBar() {
     const { currentStory, isPlaying, togglePlay, stopStory, progress, currentTime, duration, seek } = usePlayer();
@@ -16,84 +16,77 @@ export default function PlayerBar() {
     };
 
     return (
-        <AnimatePresence>
-            <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 100, opacity: 0 }}
-                className="fixed bottom-0 left-0 right-0 bg-white border-t border-pink-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 px-8 z-[100] flex items-center justify-between"
-            >
-                {/* Story Info */}
-                <div className="flex items-center gap-4 w-1/4">
-                    <div className={`w-12 h-12 ${currentStory.color} rounded-xl flex items-center justify-center text-2xl`}>
-                        {currentStory.icon}
-                    </div>
-                    <div>
-                        <h4 className="font-bold text-gray-800 line-clamp-1">{currentStory.title}</h4>
-                        <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">{currentStory.tag}</p>
-                    </div>
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-pink-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 px-8 z-[100] flex items-center justify-between">
+            {/* Story Info */}
+            <div className="flex items-center gap-4 w-1/4">
+                <div className={`w-12 h-12 ${currentStory.color} rounded-xl flex items-center justify-center text-2xl`}>
+                    {currentStory.icon}
                 </div>
-
-                {/* Controls */}
-                <div className="flex flex-col items-center flex-1 max-w-lg">
-                    <div className="flex items-center gap-6 mb-2">
-                        <button className="text-gray-400 hover:text-pink-500 transition-colors">
-                            <SkipBack size={20} />
-                        </button>
-                        <button
-                            onClick={togglePlay}
-                            className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
-                        >
-                            {isBuffering ? (
-                                <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                            ) : isPlaying ? (
-                                <Pause size={24} fill="currentColor" />
-                            ) : (
-                                <Play size={24} fill="currentColor" className="ml-1" />
-                            )}
-                        </button>
-                        <button className="text-gray-400 hover:text-pink-500 transition-colors">
-                            <SkipForward size={20} />
-                        </button>
-                    </div>
-
-                    {/* Progress Bar */}
-                    <div className="w-full flex items-center gap-3">
-                        <span className="text-xs font-bold text-gray-400 w-10 text-right">{formatTime(currentTime)}</span>
-                        <div className="flex-1 h-1 bg-gray-100 rounded-full cursor-pointer relative group"
-                            onClick={(e) => {
-                                const rect = e.currentTarget.getBoundingClientRect();
-                                const x = e.clientX - rect.left;
-                                const width = rect.width;
-                                const percentage = (x / width) * 100;
-                                seek(percentage);
-                            }}
-                        >
-                            <div
-                                className="h-full bg-pink-500 rounded-full relative"
-                                style={{ width: `${progress}%` }}
-                            >
-                                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-pink-500 rounded-full shadow-md scale-0 group-hover:scale-100 transition-transform"></div>
-                            </div>
-                        </div>
-                        <span className="text-xs font-bold text-gray-400 w-10">{formatTime(duration)}</span>
-                    </div>
+                <div>
+                    <h4 className="font-bold text-gray-800 line-clamp-1">{currentStory.title}</h4>
+                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">{currentStory.tag}</p>
                 </div>
+            </div>
 
-                {/* Volume / Misc */}
-                <div className="flex items-center justify-end gap-4 w-1/4">
-                    <Volume2 size={20} className="text-gray-400" />
-                    <div className="w-24 h-1 bg-gray-100 rounded-full">
-                        <div className="h-full bg-gray-300 w-2/3 rounded-full"></div>
-                    </div>
-                    <button onClick={stopStory} className="ml-4 p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400">
-                        <X size={20} />
+            {/* Controls */}
+            <div className="flex flex-col items-center flex-1 max-w-lg">
+                <div className="flex items-center gap-6 mb-2">
+                    <button className="text-gray-400 hover:text-pink-500 transition-colors">
+                        <SkipBack size={20} />
+                    </button>
+                    <button
+                        onClick={togglePlay}
+                        className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-pink-200 hover:scale-105 active:scale-95 transition-all"
+                    >
+                        {isBuffering ? (
+                            <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        ) : isPlaying ? (
+                            <Pause size={24} fill="currentColor" />
+                        ) : (
+                            <Play size={24} fill="currentColor" className="ml-1" />
+                        )}
+                    </button>
+                    <button className="text-gray-400 hover:text-pink-500 transition-colors">
+                        <SkipForward size={20} />
                     </button>
                 </div>
-            </motion.div>
-        </AnimatePresence>
+
+                {/* Progress Bar */}
+                <div className="w-full flex items-center gap-3">
+                    <span className="text-xs font-bold text-gray-400 w-10 text-right">{formatTime(currentTime)}</span>
+                    <div className="flex-1 h-1 bg-gray-100 rounded-full cursor-pointer relative group"
+                        onClick={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const width = rect.width;
+                            const percentage = (x / width) * 100;
+                            seek(percentage);
+                        }}
+                    >
+                        <div
+                            className="h-full bg-pink-500 rounded-full relative"
+                            style={{ width: `${progress}%` }}
+                        >
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-pink-500 rounded-full shadow-md scale-0 group-hover:scale-100 transition-transform"></div>
+                        </div>
+                    </div>
+                    <span className="text-xs font-bold text-gray-400 w-10">{formatTime(duration)}</span>
+                </div>
+            </div>
+
+            {/* Volume / Misc */}
+            <div className="flex items-center justify-end gap-4 w-1/4">
+                <Volume2 size={20} className="text-gray-400" />
+                <div className="w-24 h-1 bg-gray-100 rounded-full">
+                    <div className="h-full bg-gray-300 w-2/3 rounded-full"></div>
+                </div>
+                <button onClick={stopStory} className="ml-4 p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400">
+                    <X size={20} />
+                </button>
+            </div>
+        </div>
     );
 }

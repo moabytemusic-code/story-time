@@ -14,69 +14,48 @@ export default function Home() {
             <Navbar />
 
             {/* Hero Section */}
-            <section className="pt-40 pb-32 px-6 relative overflow-hidden">
-                {/* Decorative Background Elements */}
-                <motion.div
-                    animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-32 left-10 text-pink-200 opacity-50 hidden md:block"
-                >
-                    <Star size={64} fill="currentColor" />
-                </motion.div>
-
-                <motion.div
-                    animate={{ y: [0, 30, 0], scale: [1, 1.1, 1] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-40 right-20 text-yellow-200 opacity-50 hidden md:block"
-                >
-                    <Heart size={80} fill="currentColor" />
-                </motion.div>
-
+            <section className="pt-32 pb-24 px-6 relative overflow-hidden bg-gradient-to-b from-[#FFF5F9] to-white">
                 <div className="max-w-4xl mx-auto text-center relative z-10">
-                    {/* Badge */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="inline-flex items-center gap-2 bg-white px-6 py-2 rounded-full shadow-sm border border-pink-100 mb-8"
+                        className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-1.5 rounded-full shadow-sm border border-pink-100 mb-6"
                     >
-                        <span className="text-yellow-400">✨</span>
-                        <span className="font-bold text-pink-500 text-sm tracking-wide">Welcome to The Listening Lands</span>
-                        <span className="text-yellow-400">✨</span>
+                        <span className="text-xl">✨</span>
+                        <span className="font-bold text-pink-500 text-sm tracking-wide uppercase">The Listening Lands Await</span>
                     </motion.div>
 
-                    {/* Headline */}
-                    <motion.h1
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.1 }}
-                        className="font-rounded font-extrabold text-5xl md:text-7xl text-pink-500 mb-8 leading-tight drop-shadow-sm"
-                    >
-                        Magical Stories for <br className="hidden md:block" />
-                        <span className="text-pink-400">Little Learners</span>
-                    </motion.h1>
+                    <h1 className="font-rounded font-black text-5xl md:text-7xl text-gray-800 mb-6 leading-tight">
+                        Turn <span className="text-pink-500 relative inline-block">
+                            Bedtime
+                            <svg className="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                            </svg>
+                        </span> into <br />
+                        <span className="text-indigo-400">Magic Time</span>
+                    </h1>
 
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-12 leading-relaxed font-medium"
-                    >
-                        Join Lila, Pip, and friends on enchanting adventures that teach sensory skills, emotional wisdom, and spark boundless imagination.
-                    </motion.p>
+                    <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                        Spark imagination and calm busy minds with sensory stories designed for <strong>emotional growth</strong>.
+                    </p>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="flex flex-col md:flex-row items-center justify-center gap-4"
+                        className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
-                        <Link href="/stories" className="btn-primary flex items-center gap-2 w-full md:w-auto justify-center">
-                            <BookOpen size={20} /> Explore the Stories
+                        <Link href="/stories" className="btn-primary flex items-center gap-2 text-lg px-8 py-4 shadow-xl shadow-pink-200/50 hover:shadow-pink-200 transition-all">
+                            <Play size={20} fill="currentColor" /> Play a Free Story
                         </Link>
-                        <Link href="/dashboard" className="btn-secondary flex items-center gap-2 w-full md:w-auto justify-center">
-                            <Star size={20} /> Join Little Wonders Club
+                        <Link href="/membership" className="text-gray-500 font-bold hover:text-pink-500 px-6 py-3 transition-colors">
+                            View Membership Plans →
                         </Link>
                     </motion.div>
+
+                    <div className="mt-8 text-sm text-gray-400 font-medium">
+                        Trusted by 10,000+ Parents • Screen-free Fun
+                    </div>
                 </div>
             </section>
 

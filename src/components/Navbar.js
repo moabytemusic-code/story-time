@@ -29,6 +29,9 @@ export default function Navbar() {
                     <Link href="/stories" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Stories</Link>
                     <Link href="/membership" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Membership</Link>
                     <Link href="/parents" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Parents</Link>
+                    <Link href="/sample-pack" onClick={() => playSound()} className="text-pink-500 hover:text-pink-600 transition-colors font-bold flex items-center gap-1">
+                        Gift 🎁
+                    </Link>
                     <Link href="/fun-zone" onClick={() => playSound()} className="text-purple-500 hover:text-purple-600 transition-colors flex items-center gap-1">
                         <span className="text-lg">🎈</span> Kids Zone
                     </Link>
@@ -71,6 +74,9 @@ export default function Navbar() {
                     <Link href="/stories" onClick={() => { playSound(); setIsMobileMenuOpen(false); }} className="text-2xl font-bold text-gray-700 hover:text-pink-500">Stories</Link>
                     <Link href="/membership" onClick={() => { playSound(); setIsMobileMenuOpen(false); }} className="text-2xl font-bold text-gray-700 hover:text-pink-500">Membership</Link>
                     <Link href="/parents" onClick={() => { playSound(); setIsMobileMenuOpen(false); }} className="text-2xl font-bold text-gray-700 hover:text-pink-500">Parents</Link>
+                    <Link href="/sample-pack" onClick={() => { playSound(); setIsMobileMenuOpen(false); }} className="text-2xl font-bold text-pink-500 hover:text-pink-600 flex items-center gap-2">
+                        Gift 🎁
+                    </Link>
                     <Link href="/fun-zone" onClick={() => { playSound(); setIsMobileMenuOpen(false); }} className="text-2xl font-bold text-purple-500 hover:text-purple-600 flex items-center gap-2">
                         <span className="text-3xl">🎈</span> Kids Zone
                     </Link>

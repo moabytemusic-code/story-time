@@ -98,15 +98,20 @@ export default function StoryDetails() {
                             <BookOpen className="text-pink-500" /> Story Transcript
                         </h2>
                         <div className="prose prose-lg prose-pink text-gray-600">
-                            <p>
-                                Once upon a time, in a land filled with whispering trees and singing rivers...
-                            </p>
-                            <p>
-                                (This is where the full text of the story would go. Reading along helps children develop literacy skills while they listen!)
-                            </p>
-                            <p className="italic text-gray-400">
-                                [Content placeholder for {story.title}]
-                            </p>
+                            {story.content && story.content.length > 0 ? (
+                                story.content.map((paragraph, index) => (
+                                    <p key={index}>{paragraph}</p>
+                                ))
+                            ) : (
+                                <>
+                                    <p>
+                                        Once upon a time...
+                                    </p>
+                                    <p className="italic text-gray-400">
+                                        (Transcript not available for this story yet.)
+                                    </p>
+                                </>
+                            )}
                         </div>
                     </div>
 

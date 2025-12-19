@@ -35,12 +35,14 @@ export default function ParentsResources() {
                         </h2>
                         <div className="grid md:grid-cols-2 gap-8">
                             <BlogCard
+                                id="bedtime-stories-sleep"
                                 category="Bedtime"
                                 title="5 Bedtime Stories That Actually Help Toddlers Sleep"
                                 desc="Science-backed narrative techniques to lower heart rates and signal sleep."
                                 color="bg-indigo-100 text-indigo-600"
                             />
                             <BlogCard
+                                id="big-feelings-preschooler"
                                 category="Emotional Health"
                                 title="How to Talk to Your Preschooler About 'Big Feelings'"
                                 desc="Simple scripts and questions to help them name and tame their emotions."
@@ -52,24 +54,28 @@ export default function ParentsResources() {
                     {/* All Categories */}
                     <div className="grid md:grid-cols-3 gap-8">
                         <BlogCard
+                            id="sensory-scavenger-hunt"
                             category="Activities"
                             title="The 5 Senses Scavenger Hunt"
                             desc="A perfect rainy day activity to ground active kids."
                             color="bg-orange-100 text-orange-600"
                         />
                         <BlogCard
+                            id="literacy-boost"
                             category="Screen-Free"
                             title="Why Audio Stories Boost Literacy"
                             desc="Understanding the 'listening advantage' for pre-readers."
                             color="bg-green-100 text-green-600"
                         />
                         <BlogCard
+                            id="separation-anxiety"
                             category="Parenting"
                             title="Navigating Separation Anxiety"
                             desc="How 'Lila the Lion' helps kids feel safe when you leave."
                             color="bg-purple-100 text-purple-600"
                         />
                         <BlogCard
+                            id="morning-routines"
                             category="Routines"
                             title="Morning Routines That Start with a Smile"
                             desc="Turning the 'hurry up' struggle into a playful game."
@@ -95,9 +101,9 @@ export default function ParentsResources() {
     )
 }
 
-function BlogCard({ category, title, desc, color }) {
+function BlogCard({ id, category, title, desc, color }) {
     return (
-        <Link href="#" className="group block bg-white p-8 rounded-[32px] border border-gray-100 hover:shadow-xl hover:shadow-pink-100/50 transition-all hover:-translate-y-1">
+        <Link href={`/parents/${id || '#'}`} className="group block bg-white p-8 rounded-[32px] border border-gray-100 hover:shadow-xl hover:shadow-pink-100/50 transition-all hover:-translate-y-1">
             <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-4 ${color}`}>
                 {category}
             </span>

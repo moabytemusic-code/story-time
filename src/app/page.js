@@ -96,7 +96,7 @@ export default function Home() {
                     <div className="w-full md:w-1/3 relative">
                         <div className="aspect-square bg-pink-200 rounded-[40px] rotate-3 overflow-hidden border-4 border-white shadow-lg relative">
                             <img
-                                src="/images/ms-erica-portrait.png"
+                                src="/images/ms-erica-portrait.jpg"
                                 alt="Ms. Erica reading a book"
                                 className="object-cover w-full h-full"
                             />

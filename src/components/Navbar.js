@@ -26,6 +26,7 @@ export default function Navbar() {
                 {/* Links - Desktop */}
                 <div className="hidden md:flex items-center gap-8 font-bold text-gray-600">
                     <Link href="/stories" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Stories</Link>
+                    <Link href="/parents" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Parents</Link>
                     <Link href="/shop" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Shop</Link>
                     <Link href="/membership" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Membership</Link>
                     <Link href="/activities" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Activities</Link>

@@ -3,8 +3,17 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <footer className="bg-pink-50 py-20 px-6 border-t border-pink-100">
-            <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+        <footer className="bg-pink-50 py-20 px-6 border-t border-pink-100 relative overflow-hidden">
+            {/* Character Corner */}
+            <div className="absolute -bottom-4 right-0 md:right-10 w-48 h-48 pointer-events-none hidden md:block">
+                <img
+                    src="/images/footer-characters.png"
+                    alt="Lila and Pip reading"
+                    className="w-full h-full object-contain hover:translate-y-2 transition-transform duration-700"
+                />
+            </div>
+
+            <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 relative z-10">
                 <div className="col-span-1 md:col-span-2">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white">

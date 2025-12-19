@@ -145,9 +145,22 @@ export default function Stories() {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-20 opacity-50">
-                            <h3 className="text-2xl font-bold text-gray-400 mb-2">No stories found</h3>
-                            <p className="text-gray-400">Try searching for something else!</p>
+                        <div className="text-center py-20 opacity-70">
+                            <div className="w-48 h-48 mx-auto mb-6 bg-gray-50 rounded-full flex items-center justify-center relative overflow-hidden">
+                                <img
+                                    src="/images/empty-state.png"
+                                    alt="Searching for stories"
+                                    className="w-full h-full object-contain p-4"
+                                />
+                            </div>
+                            <h3 className="text-2xl font-bold text-gray-400 mb-2">Hmm, no stories found...</h3>
+                            <p className="text-gray-400 max-w-sm mx-auto">Try changing the age group or searching for something else like "dragons" or "bedtime"!</p>
+                            <button
+                                onClick={() => { setSearchQuery(""); setSelectedTag("All"); setSelectedAge("All"); }}
+                                className="mt-6 text-pink-500 font-bold hover:underline"
+                            >
+                                Clear all filters
+                            </button>
                         </div>
                     )}
                 </div>

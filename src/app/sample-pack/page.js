@@ -69,11 +69,11 @@ export default function SamplePack() {
                                     <p className="text-gray-500 mb-6">Check your inbox for the official welcome, or download your files right here:</p>
 
                                     <div className="space-y-3">
-                                        <a href="#" className="flex items-center justify-center gap-2 bg-pink-500 text-white font-bold py-4 rounded-xl hover:bg-pink-600 transition-colors w-full">
-                                            <Play size={20} fill="currentColor" /> Download Audio (MP3)
+                                        <a href="/downloads/The_Sleepy_Star_Script.md" download className="flex items-center justify-center gap-2 bg-pink-500 text-white font-bold py-4 rounded-xl hover:bg-pink-600 transition-colors w-full">
+                                            <Play size={20} fill="currentColor" /> Download Audio Script (Demo)
                                         </a>
-                                        <a href="#" className="flex items-center justify-center gap-2 bg-white border-2 border-pink-100 text-pink-500 font-bold py-4 rounded-xl hover:bg-pink-50 transition-colors w-full">
-                                            <Download size={20} /> Download Chart (PDF)
+                                        <a href="/downloads/Bedtime_Routine_Printable.html" target="_blank" className="flex items-center justify-center gap-2 bg-white border-2 border-pink-100 text-pink-500 font-bold py-4 rounded-xl hover:bg-pink-50 transition-colors w-full">
+                                            <Download size={20} /> Download Chart (Printable)
                                         </a>
                                     </div>
                                 </motion.div>

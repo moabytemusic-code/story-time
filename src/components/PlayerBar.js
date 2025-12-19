@@ -19,12 +19,12 @@ export default function PlayerBar() {
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-pink-100 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 px-8 z-[100] flex items-center justify-between">
             {/* Story Info */}
             <div className="flex items-center gap-4 w-1/4">
-                <div className={`w-12 h-12 ${currentStory.color} rounded-xl flex items-center justify-center text-2xl`}>
-                    {currentStory.icon}
+                <div className={`w-12 h-12 ${currentStory?.color || 'bg-gray-100'} rounded-xl flex items-center justify-center text-2xl`}>
+                    {currentStory?.icon || '🎵'}
                 </div>
                 <div>
-                    <h4 className="font-bold text-gray-800 line-clamp-1">{currentStory.title}</h4>
-                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">{currentStory.tag}</p>
+                    <h4 className="font-bold text-gray-800 line-clamp-1">{currentStory?.title || 'Unknown Story'}</h4>
+                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">{currentStory?.tag || 'Story'}</p>
                 </div>
             </div>
 

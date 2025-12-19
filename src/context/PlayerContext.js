@@ -17,6 +17,8 @@ export function PlayerProvider({ children }) {
     const { checkAchievements } = useUser();
 
     const playStory = (story) => {
+        console.log("Playing story:", story.title, "at URL:", story.audioUrl);
+
         if (currentStory?.id === story.id) {
             togglePlay();
             return;
@@ -24,30 +26,67 @@ export function PlayerProvider({ children }) {
 
         if (audio) {
             audio.pause();
+            audio.currentTime = 0; // Reset previous
         }
 
-        const newAudio = new Audio(story.audioUrl);
+        try {
+            const newAudio = new Audio(story.audioUrl);
+            // Default volume to 1.0
+            newAudio.volume = 1.0;
 
-        newAudio.addEventListener('loadedmetadata', () => {
-            setDuration(newAudio.duration);
-        });
+            newAudio.addEventListener('error', (e) => {
+                const error = e.target.error;
+                console.error("Audio playback error:", error);
 
-        newAudio.addEventListener('timeupdate', () => {
-            setCurrentTime(newAudio.currentTime);
-            setProgress((newAudio.currentTime / newAudio.duration) * 100);
-        });
+                let errorMessage = "Unknown error";
+                if (error.code === error.MEDIA_ERR_ABORTED) errorMessage = "Aborted";
+                if (error.code === error.MEDIA_ERR_NETWORK) errorMessage = "Network Error";
+                if (error.code === error.MEDIA_ERR_DECODE) errorMessage = "Decode Error (Corrupt file?)";
+                if (error.code === error.MEDIA_ERR_SRC_NOT_SUPPORTED) errorMessage = "Source Not Supported (404 Not Found?)";
 
-        newAudio.addEventListener('ended', () => {
-            setIsPlaying(false);
-            setProgress(0);
-            setCurrentTime(0);
-            checkAchievements(story.id); // Check for achievements!
-        });
+                alert(`Error playing story: ${errorMessage}. Check console for details.`);
+                setIsPlaying(false);
+            });
 
-        setAudio(newAudio);
-        setCurrentStory(story);
-        setIsPlaying(true);
-        newAudio.play().catch(e => console.error("Playback failed:", e));
+            newAudio.addEventListener('loadedmetadata', () => {
+                console.log("Audio metadata loaded. Duration:", newAudio.duration);
+                setDuration(newAudio.duration);
+            });
+
+            newAudio.addEventListener('timeupdate', () => {
+                setCurrentTime(newAudio.currentTime);
+                if (newAudio.duration) {
+                    setProgress((newAudio.currentTime / newAudio.duration) * 100);
+                }
+            });
+
+            newAudio.addEventListener('ended', () => {
+                console.log("Audio ended");
+                setIsPlaying(false);
+                setProgress(0);
+                setCurrentTime(0);
+                checkAchievements(story.id);
+            });
+
+            setAudio(newAudio);
+            setCurrentStory(story);
+            setIsPlaying(true);
+
+            const playPromise = newAudio.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log("Playback started successfully");
+                    })
+                    .catch(e => {
+                        console.error("Playback failed (Autoplay policy?):", e);
+                        setIsPlaying(false);
+                    });
+            }
+
+        } catch (err) {
+            console.error("Error creating Audio object:", err);
+        }
     };
 
     const togglePlay = () => {
@@ -55,10 +94,19 @@ export function PlayerProvider({ children }) {
 
         if (isPlaying) {
             audio.pause();
+            setIsPlaying(false);
         } else {
-            audio.play();
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        setIsPlaying(true);
+                    })
+                    .catch(e => {
+                        console.error("Resume failed:", e);
+                    });
+            }
         }
-        setIsPlaying(!isPlaying);
     };
 
     const stopStory = () => {

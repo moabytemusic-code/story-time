@@ -30,7 +30,13 @@ export function useStories() {
                     if (!data || data.length === 0) {
                         setStories(MOCK_STORIES);
                     } else {
-                        setStories(data);
+                        // Normalize Supabase data (snake_case -> camelCase)
+                        const normalizedStories = data.map(s => ({
+                            ...s,
+                            audioUrl: s.audio_url || s.audioUrl, // robust fallback
+                            // Add other mappings if needed, e.g. createdAt: s.created_at
+                        }));
+                        setStories(normalizedStories);
                     }
                 }
             } catch (err) {

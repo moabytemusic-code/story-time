@@ -35,12 +35,22 @@ export function PlayerProvider({ children }) {
         setIsPlaying(true); // Optimistic UI
         setCurrentStory(story);
 
+        const url = story.audioUrl || story.audio_url;
+
+        if (!url) {
+            console.error("Audio URL is missing for story:", story);
+            alert(`Error: Audio URL is missing for "${story.title}"`);
+            setIsBuffering(false);
+            setIsPlaying(false);
+            return;
+        }
+
         // Pre-check if file exists
         try {
-            const check = await fetch(story.audioUrl, { method: 'HEAD' });
+            const check = await fetch(url, { method: 'HEAD' });
             if (!check.ok) {
-                console.error(`Audio file not found (Status ${check.status}): ${story.audioUrl}`);
-                alert(`Error: Audio file not found (404). The file '${story.audioUrl}' might not be deployed yet.`);
+                console.error(`Audio file not found (Status ${check.status}): ${url}`);
+                alert(`Error: Audio file not found (404). The file '${url}' might not be deployed yet.`);
                 setIsPlaying(false);
                 setIsBuffering(false);
                 return;
@@ -51,7 +61,7 @@ export function PlayerProvider({ children }) {
         }
 
         try {
-            const newAudio = new Audio(story.audioUrl);
+            const newAudio = new Audio(url);
             newAudio.volume = 1.0;
 
             newAudio.addEventListener('waiting', () => setIsBuffering(true));

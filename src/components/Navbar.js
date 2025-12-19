@@ -26,11 +26,12 @@ export default function Navbar() {
                 {/* Links - Desktop */}
                 <div className="hidden md:flex items-center gap-8 font-bold text-gray-600">
                     <Link href="/stories" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Stories</Link>
-                    <Link href="/parents" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Parents</Link>
-                    <Link href="/shop" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Shop</Link>
                     <Link href="/membership" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Membership</Link>
-                    <Link href="/activities" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Activities</Link>
-                    <Link href="/about" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">About</Link>
+                    <Link href="/parents" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Parents</Link>
+                    <Link href="/fun-zone" onClick={() => playSound()} className="text-purple-500 hover:text-purple-600 transition-colors flex items-center gap-1">
+                        <span className="text-lg">🎈</span> Kids Zone
+                    </Link>
+                    <Link href="/shop" onClick={() => playSound()} className="hover:text-pink-500 transition-colors">Shop</Link>
                 </div>
 
                 {/* CTA */}

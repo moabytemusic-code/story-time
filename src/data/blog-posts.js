@@ -69,5 +69,50 @@ export const BLOG_POSTS = [
         `,
         date: "October 20, 2024",
         readTime: "3 min read"
+    },
+    {
+        id: "literacy-boost",
+        title: "Why Audio Stories Boost Literacy",
+        category: "Screen-Free",
+        excerpt: "Understanding the 'listening advantage' for pre-readers.",
+        content: `
+            <p>In a visual world, we sometimes forget the power of the ear. But for pre-readers, audio is a bridge to literacy.</p>
+            <h3>Vocabulary Growth</h3>
+            <p>Audio stories often use words that don't come up in daily conversation (like "scampered" or "glistened"). Hearing these words in context builds a rich database for future reading.</p>
+            <h3>Visualization</h3>
+            <p>When watching a cartoon, the imagery is given. When listening, the child must create the image. This cognitive "muscle" is crucial for reading comprehension later in school.</p>
+        `,
+        date: "October 25, 2024",
+        readTime: "4 min read"
+    },
+    {
+        id: "separation-anxiety",
+        title: "Navigating Separation Anxiety",
+        category: "Parenting",
+        excerpt: "How 'Lila the Lion' helps kids feel safe when you leave.",
+        content: `
+            <p>Leaving daycare drop-off can be heartbreaking. Tears, clinging, pleading. It triggers our own alarm bells.</p>
+            <h3>The "Bridge" Object</h3>
+            <p>Give them something of yours to keep—a button, a note, a "kiss" in their pocket. This physical object bridges the connection while you are apart.</p>
+            <h3>Validation over distraction</h3>
+            <p>Don't sneak away. Say goodbye comfortably and confidently. "I know you are sad. I will miss you too. And I will come back after snack time."</p>
+        `,
+        date: "November 1, 2024",
+        readTime: "5 min read"
+    },
+    {
+        id: "morning-routines",
+        title: "Morning Routines That Start with a Smile",
+        category: "Routines",
+        excerpt: "Turning the 'hurry up' struggle into a playful game.",
+        content: `
+            <p>Mornings are effectively a "time crunch" negotiation with a tiny, irrational human. How do we win?</p>
+            <h3>Visual Charts</h3>
+            <p>Toddlers can't read clocks, but they can read pictures. A chart with pictures of a toothbrush, clothes, and breakfast empowers them to own the process.</p>
+            <h3>Music</h3>
+            <p>Make a "getting ready" playlist. When "Happy" by Pharrell comes on, it means shoes need to be on!</p>
+        `,
+        date: "November 5, 2024",
+        readTime: "4 min read"
     }
 ];

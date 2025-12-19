@@ -27,16 +27,25 @@ export function useStories() {
                     setStories(MOCK_STORIES); // Fallback
                 } else {
                     // If DB is empty, use mock data so the site isn't blank
-                    if (!data || data.length === 0) {
+                    if (!data || !Array.isArray(data) || data.length === 0) {
                         setStories(MOCK_STORIES);
                     } else {
-                        // Normalize Supabase data (snake_case -> camelCase)
-                        const normalizedStories = data.map(s => ({
-                            ...s,
-                            audioUrl: s.audio_url || s.audioUrl, // robust fallback
-                            // Add other mappings if needed, e.g. createdAt: s.created_at
-                        }));
-                        setStories(normalizedStories);
+                        try {
+                            // Normalize Supabase data (snake_case -> camelCase)
+                            const normalizedStories = data.map(s => ({
+                                ...s,
+                                audioUrl: s.audio_url || s.audioUrl,
+                                // Ensure critical fields exist to prevent rendering crashes
+                                tag: s.tag || 'Story',
+                                title: s.title || 'Untitled Story',
+                                color: s.color || 'bg-gray-100',
+                                icon: s.icon || '📖'
+                            }));
+                            setStories(normalizedStories);
+                        } catch (mapErr) {
+                            console.error("Error normalizing stories:", mapErr);
+                            setStories(MOCK_STORIES);
+                        }
                     }
                 }
             } catch (err) {

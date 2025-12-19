@@ -29,7 +29,7 @@ export async function POST(request) {
             },
             body: JSON.stringify({
                 email: email,
-                listIds: [2], // Assuming List ID 2 is "General" or "Leads", user can configure this
+                listIds: [50], // List ID 50 updated per user request
                 updateEnabled: true
             })
         });

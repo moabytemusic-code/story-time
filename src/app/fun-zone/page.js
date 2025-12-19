@@ -21,7 +21,7 @@ export default function FunZone() {
                     Games, coloring pages, and silly sounds for rainy days!
                 </p>
 
-                <div className="flex justify-center gap-4">
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <a href="#coloring" className="bg-pink-500 text-white font-black px-8 py-4 rounded-full text-lg hover:scale-105 transition-transform shadow-xl border-4 border-pink-200">
                         🎨 Coloring
                     </a>

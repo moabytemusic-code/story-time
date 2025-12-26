@@ -16,8 +16,19 @@ export default function Stories() {
 
     // Extract unique tags
     const tags = useMemo(() => {
-        if (!stories) return ["All"];
-        const uniqueTags = new Set(stories.map(story => story.tag));
+        const extraTags = [
+            "Good Touch Bad Touch",
+            "Bullying",
+            "Death",
+            "Money: Needs vs Wants",
+            "New Baby",
+            "Self Love & Esteem"
+        ];
+
+        if (!stories) return ["All", ...extraTags];
+
+        // Combine existing story tags with extra tags
+        const uniqueTags = new Set([...stories.map(story => story.tag), ...extraTags]);
         return ["All", ...Array.from(uniqueTags)];
     }, [stories]);
 

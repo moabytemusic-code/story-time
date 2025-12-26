@@ -134,4 +134,76 @@ export const STORIES = [
             "Gary felt light and fluffy white again. Sometimes, you just need a good cry to feel better."
         ]
     },
+    {
+        id: 13,
+        title: "Percy the Puffin's Polar Picnic",
+        duration: "5 min",
+        color: "bg-orange-100",
+        icon: "🐧",
+        description: "Percy learns that the cold isn't so bad when you bring your own sunshine.",
+        tag: "Resilience",
+        age: "4-7",
+        audioUrl: "/audio/percy-puffin.mp3",
+        content: [
+            "In the sparkling, snowy world of the North Pole, lived a very unusual puffin named Percy. Percy loved warmth. He wore a tiny, bright yellow scarf knitted by his grandmother.",
+            "One morning, Percy’s best friend, Sophie the Seal, flopped onto his ice ledge. 'Percy! The Great Northern Lights are putting on a show tonight. We should have a picnic!'",
+            "Percy shivered. 'A picnic, Sophie? It’s freezing!'",
+            "Sophie laughed. 'But Percy, that’s the best part! We’ll bring the warmest things we can find to the coldest place in the world.'",
+            "Suddenly, the sky exploded with ribbons of emerald green, neon pink, and deep indigo. Percy was so mesmerized he forgot to be cold.",
+            "He realized he didn't need a tropical beach to be warm. He had his yellow scarf, a thermos of cocoa, and the best friend a puffin could ask for."
+        ]
+    },
+    {
+        id: 14,
+        title: "Daisy the Daydreamer Dragon",
+        duration: "6 min",
+        color: "bg-green-100",
+        icon: "🐉",
+        description: "Daisy's head might be in the clouds, but her heart is right where it needs to be.",
+        tag: "Mindfulness",
+        age: "4-7",
+        audioUrl: "/audio/daisy-dragon.mp3",
+        content: [
+            "Daisy was a beautiful, emerald-green dragon. Most dragons spent their days practicing their 'ROARS'. But Daisy? Daisy was a daydreamer.",
+            "She would watch the clouds turn into shapes of fluffy bunnies... or count the sparkles on a waterfall.",
+            "One afternoon, the Kingdom of Scales got very, very foggy. All the big, strong dragons were getting lost in the clouds.",
+            "Daisy used her 'Mindful Ears.' She listened to the hum of the bees below. She smelled the pine trees near the village.",
+            "She breathed a tiny, shimmering glow from her nose that cut right through the blue mist and led everyone home."
+        ]
+    },
+    {
+        id: 15,
+        title: "Finley the Finicky Frog",
+        duration: "5 min",
+        color: "bg-blue-100",
+        icon: "🐸",
+        description: "Finley only likes green flies... until he discovers the taste of a rainbow.",
+        tag: "Courage",
+        age: "4-7",
+        audioUrl: "/audio/finley-frog.mp3",
+        content: [
+            "Finley lived in Lily Pad Lane. He only ate one thing: green flies. Crunch, crunch, crunch.",
+            "One day, his friend Barnaby the Turtle brought over a basket of 'Purple Lily-Pops.'",
+            "Finley shook his head. 'No, thank you! I only like green. Green is safe!'",
+            "But then he saw a butterfly take a tiny sip and do a happy loop-de-loop!",
+            "Finley tried it. 'Oh my!' he whispered. It tasted like sunshine and grapes. It tasted like... a rainbow!"
+        ]
+    },
+    {
+        id: 16,
+        title: "The Night-Light Knight",
+        duration: "5 min",
+        color: "bg-indigo-100",
+        icon: "🛡️",
+        description: "Sir Leo learns that shadows are just shapes playing tag.",
+        tag: "Bedtime",
+        age: "0-4",
+        audioUrl: "/audio/night-knight.mp3",
+        content: [
+            "Sir Leo wasn't a giant knight with a horse. He was a little boy in blue pajamas. But at night, he became... The Night-Light Knight!",
+            "Sometimes, at night, the shadows under the bed look a little long. Sir Leo would feel his heart go thump-thump-thump.",
+            "But then, he clicked his bedside lamp. Click! Suddenly, his room was filled with soft, golden stars.",
+            "He realized that he didn't need to be afraid of the dark, because he carried the light right there in his hand—and in his heart."
+        ]
+    },
 ];

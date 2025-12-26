@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f9fc;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .content {
+            padding: 40px 30px;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .greeting {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .story-card {
+            background: #f7fafc;
+            border: 1px solid #edf2f7;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .story-title {
+            color: #5a67d8;
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        .tip-box {
+            background-color: #fff5f5;
+            border-left: 4px solid #fc8181;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 4px;
+        }
+
+        .tip-header {
+            color: #c53030;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #48bb78;
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(72, 187, 120, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #718096;
+            font-size: 13px;
+            background: #f7fafc;
+            border-top: 1px solid #edf2f7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <img src="http://localhost:3000/images/logo.png" alt="Storytime Logo" width="120"
+                style="margin-bottom: 15px; border-radius: 50%;">
+            <h1>Storytime with Ms. Erica</h1>
+            <p>Weekly stories to spark their imagination</p>
+        </div>
+
+        <div class="content">
+            <div class="greeting">Hi Mom,</div>
+
+            <p>This week, we're sharing a special story about finding confidence in your own voice—even if it's a quiet
+                one.</p>
+
+            <div class="story-card">
+                <h2 class="story-title">🐘 Pip's Big Parade</h2>
+                <p>Meet Pip, a little elephant who worries his trumpet is too quiet for the big jungle band. Join him as
+                    he learns that his soft sound is actually the perfect missing piece.</p>
+                <p style="margin-top: 15px;"><em>Perfect for: Ages 3-6 | Teaching Confidence & Self-Acceptance</em></p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="http://localhost:3000/stories/1" class="btn">Read or Listen Now</a>
+            </div>
+
+            <div class="tip-box">
+                <div class="tip-header">Ms. Erica's Parenting Tip</div>
+                <p><strong>Celebrate their unique volume.</strong></p>
+                <p>In a loud world, quiet children can easily feel overlooked. Remind your little one that their voice
+                    matters, no matter how soft it is. Sometimes the quietest observations are the most profound.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>You received this email because you are part of the Storytime family.</p>
+            <p>© 2025 Storytime. All rights reserved.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

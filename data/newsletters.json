@@ -1,0 +1,302 @@
+[
+    {
+        "id": 1,
+        "subject": "Story Time: Pip's Big Parade",
+        "title": "Pip's Big Parade",
+        "body": "<h1>Pip's Big Parade</h1><p>Hi Mom,</p><p>Meet Pip, a little elephant who worries his trumpet is too quiet. This story is all about finding confidence in being yourself—even if you're a little quieter than the rest.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Celebrate their unique volume.</strong> In a loud world, quiet children can feel overlooked. Remind your little one that their voice matters, no matter how soft it is. Sometimes the quietest observations are the most profound.</p><br/><a href='http://localhost:3000/stories/1'>Read the full story</a>"
+    },
+    {
+        "id": 2,
+        "subject": "Story Time: Lila & The Ocean Song",
+        "title": "Lila & The Ocean Song",
+        "body": "<h1>Lila & The Ocean Song</h1><p>Hi Parent,</p><p>Join Lila as she finds calm in the rhythm of the waves. This is a perfect story for winding down after a busy day.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Co-regulation is key.</strong> When your child is overwhelmed, their nervous system looks to yours for safety. Taking deep breaths together—like the ocean waves—calms you both down faster than words ever could.</p><br/><a href='http://localhost:3000/stories/2'>Read the full story</a>"
+    },
+    {
+        "id": 3,
+        "subject": "Story Time: The Sleepy Moon",
+        "title": "The Sleepy Moon",
+        "body": "<h1>The Sleepy Moon</h1><p>Hi Mom,</p><p>The sun has set, and Mr. Moon is here to watch over us. Use this gentle tale to help your little one drift off to dreamland.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Routine brings security.</strong> A predictable bedtime ritual (bath, book, bed) signals to your child's brain that it's time to sleep, reducing bedtime battles and helping them feel safe.</p><br/><a href='http://localhost:3000/stories/3'>Read the full story</a>"
+    },
+    {
+        "id": 4,
+        "subject": "Story Time: Leo's Lost Roar",
+        "title": "Leo's Lost Roar",
+        "body": "<h1>Leo's Lost Roar</h1><p>Hi Parent,</p><p>Leo the Lion has lost his roar and found a squeak instead! A funny and touching story about handling frustration.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Name it to tame it.</strong> When big feelings take over (like Leo's frustration), help your child name the emotion. Saying 'You look frustrated' validates their experience and helps the 'roar' pass more quickly.</p><br/><a href='http://localhost:3000/stories/4'>Read the full story</a>"
+    },
+    {
+        "id": 5,
+        "subject": "Story Time: The Sharing Tree",
+        "title": "The Sharing Tree",
+        "body": "<h1>The Sharing Tree</h1><p>Hi Mom,</p><p>Squirrel learns that apples taste better when shared with friends. A sweet lesson on the joy of giving.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Model, don't force.</strong> True generosity comes from seeing others give. Instead of forcing 'share!', try sharing your own snacks or toys with your child to show them how good it feels.</p><br/><a href='http://localhost:3000/stories/5'>Read the full story</a>"
+    },
+    {
+        "id": 6,
+        "subject": "Story Time: Ruby's Rainy Day",
+        "title": "Ruby's Rainy Day",
+        "body": "<h1>Ruby's Rainy Day</h1><p>Hi Parent,</p><p>Rainy days don't have to be gloomy. Watch Ruby find magic in the puddles!</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Embrace the mess.</strong> Puddle jumping looks messy to us, but to a child, it's pure sensory joy. Putting on old clothes and letting them get dirty builds resilience and happy memories.</p><br/><a href='http://localhost:3000/stories/6'>Read the full story</a>"
+    },
+    {
+        "id": 7,
+        "subject": "Story Time: The Magic Paintbrush",
+        "title": "The Magic Paintbrush",
+        "body": "<h1>The Magic Paintbrush</h1><p>Hi Mom,</p><p>Sam's drawings are coming to life! Encourage your child's imagination with this creative adventure.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Process over product.</strong> When your child creates art, focus on their effort ('Look how hard you worked on those swirls!') rather than just the final picture. It builds a growth mindset.</p><br/><a href='http://localhost:3000/stories/7'>Read the full story</a>"
+    },
+    {
+        "id": 8,
+        "subject": "Story Time: Benny's Balloon Ride",
+        "title": "Benny's Balloon Ride",
+        "body": "<h1>Benny's Balloon Ride</h1><p>Hi Parent,</p><p>Float away with Benny on a giant red balloon. A story about seeing the world from a new perspective.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Change the scenery.</strong> When a day feels stuck or grumpy (for you or them), a change of environment—even just stepping outside or looking out a different window—can reset everyone's mood.</p><br/><a href='http://localhost:3000/stories/8'>Read the full story</a>"
+    },
+    {
+        "id": 9,
+        "subject": "Story Time: Detective Fox",
+        "title": "Detective Fox",
+        "body": "<h1>Detective Fox</h1><p>Hi Mom,</p><p>There's a mystery afoot! Who stole the pie? Join Detective Fox for a fun whodunit.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Ask curiosity questions.</strong> Instead of giving answers, ask 'What do you think happened?' Curiosity builds critical thinking and is a great antidote to anxiety.</p><br/><a href='http://localhost:3000/stories/9'>Read the full story</a>"
+    },
+    {
+        "id": 10,
+        "subject": "Story Time: The Brave Little Firefly",
+        "title": "The Brave Little Firefly",
+        "body": "<h1>The Brave Little Firefly</h1><p>Hi Parent,</p><p>Flicker is a firefly afraid of the dark. See how he finds his own light when a friend needs help.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Validate fears.</strong> It's okay to be scared. Acknowledging your child's fear ('That shadow looks spooky to you') helps them feel understood and brave enough to face it.</p><br/><a href='http://localhost:3000/stories/10'>Read the full story</a>"
+    },
+    {
+        "id": 11,
+        "subject": "Story Time: Morning Sun Salutation",
+        "title": "Morning Sun Salutation",
+        "body": "<h1>Morning Sun Salutation</h1><p>Hi Mom,</p><p>Start the day with energy! This interactive story guides you through a fun morning stretch.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Move to connect.</strong> Physical movement releases tension and boosts mood. Doing a quick stretch or dance party together in the morning connects you before the rush of the day begins.</p><br/><a href='http://localhost:3000/stories/11'>Read the full story</a>"
+    },
+    {
+        "id": 12,
+        "subject": "Story Time: The Grumpy Cloud",
+        "title": "The Grumpy Cloud",
+        "body": "<h1>The Grumpy Cloud</h1><p>Hi Parent,</p><p>Gary the Cloud is holding in all his rain. Learn why having a good cry can make everything feel lighter.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Tears are healing.</strong> Crying isn't 'bad behavior'—it's a release valve for stress. Let your child cry without distracting them, and watch how much calmer they are afterwards.</p><br/><a href='http://localhost:3000/stories/12'>Read the full story</a>"
+    },
+    {
+        "id": 13,
+        "subject": "Story Time: Percy the Puffin’s Polar Picnic",
+        "title": "Percy the Puffin’s Polar Picnic",
+        "body": "<h1>Percy the Puffin’s Polar Picnic</h1><p>Hi Mom,</p><p>Meet Percy, a puffin who loves warmth in a very cold world. This story is all about finding your own sunshine, even when things feel a bit chilly or scary.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Perspective is a superpower.</strong> Help your child see that while we can't change the weather, we can always change our gear and our attitude. A warm scarf and a thermos of cocoa go a long way!</p><br/><a href='http://localhost:3000/stories/13'>Read the full story</a>"
+    },
+    {
+        "id": 14,
+        "subject": "Story Time: Daisy the Daydreamer Dragon",
+        "title": "Daisy the Daydreamer Dragon",
+        "body": "<h1>Daisy the Daydreamer Dragon</h1><p>Hi Parent,</p><p>Daisy might have her head in the clouds, but her mindful ears save the day! a beautiful lesson in staying present and unique talents.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Daydreaming is deep work.</strong> When your child is staring off into space, they are often processing complex ideas. Instead of snapping them out of it, ask 'What's happening in your imagination right now?'</p><br/><a href='http://localhost:3000/stories/14'>Read the full story</a>"
+    },
+    {
+        "id": 15,
+        "subject": "Story Time: Finley the Finicky Frog",
+        "title": "Finley the Finicky Frog",
+        "body": "<h1>Finley the Finicky Frog</h1><p>Hi Mom,</p><p>Finley is very picky about his food, until a little rainbow of flavor changes everything. Perfect for your little explorers!</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Pressure-free tasting.</strong> For picky eaters, the goals is curiosity, not consumption. Let them lick, smell, or just look at new foods without the pressure to eat it all.</p><br/><a href='http://localhost:3000/stories/15'>Read the full story</a>"
+    },
+    {
+        "id": 16,
+        "subject": "Story Time: The Night-Light Knight",
+        "title": "The Night-Light Knight",
+        "body": "<h1>The Night-Light Knight</h1><p>Hi Parent,</p><p>Sir Leo Brave turns scary shadows into a game of tag. A must-read for peaceful bedtimes.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Empower their nighttime space.</strong> Letting your child 'patrol' the room with a flashlight or choose their own nightlight gives them a sense of agency over their environment.</p><br/><a href='http://localhost:3000/stories/16'>Read the full story</a>"
+    },
+    {
+        "id": 17,
+        "subject": "Story Time: The Nervous Newt",
+        "title": "The Nervous Newt",
+        "body": "<h1>The Nervous Newt</h1><p>Hi Mom,</p><p>Ned is scared of his first swim class. Watch him find his courage.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Preview new experiences.</strong> Talk through what will happen before a new event (like swim class). Knowing what to expect reduces anxiety greatly.</p><br/><a href='http://localhost:3000/stories/17'>Read the full story</a>"
+    },
+    {
+        "id": 18,
+        "subject": "Story Time: The Forgetful Squirrel",
+        "title": "The Forgetful Squirrel",
+        "body": "<h1>The Forgetful Squirrel</h1><p>Hi Parent,</p><p>Nutty can't find his acorns, but he finds adventure instead!</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Laugh at the chaos.</strong> Parenting is full of forgotten items and lost shoes. Using humor instead of anger diffuses tension for everyone.</p><br/><a href='http://localhost:3000/stories/18'>Read the full story</a>"
+    },
+    {
+        "id": 19,
+        "subject": "Story Time: The Colorless Rainbow",
+        "title": "The Colorless Rainbow",
+        "body": "<h1>The Colorless Rainbow</h1><p>Hi Mom,</p><p>Ray the Rainbow has lost his colors. Help him find them in this bright tale.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Notice the beauty.</strong> pointing out small beautiful things (a flower, a cloud) teaches mindfulness and appreciation naturally.</p><br/><a href='http://localhost:3000/stories/19'>Read the full story</a>"
+    },
+    {
+        "id": 20,
+        "subject": "Story Time: The Whispering Willow",
+        "title": "The Whispering Willow",
+        "body": "<h1>The Whispering Willow</h1><p>Hi Parent,</p><p>Trees have stories too. Listen to the wisdom of the old Willow.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Nature heals.</strong> Even 10 minutes near a tree or on the grass can lower cortisol levels for both you and your child.</p><br/><a href='http://localhost:3000/stories/20'>Read the full story</a>"
+    },
+    {
+        "id": 21,
+        "subject": "Story Time: Barnaby's Big Bake",
+        "title": "Barnaby's Big Bake",
+        "body": "<h1>Barnaby's Big Bake</h1><p>Hi Mom,</p><p>Barnaby uses salt instead of sugar! A delicious disaster story to giggle at.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Cook together.</strong> It's messy, yes. But it teaches math, science, and sensory skills—and kids endure eating food they helped make!</p><br/><a href='http://localhost:3000/stories/21'>Read the full story</a>"
+    },
+    {
+        "id": 22,
+        "subject": "Story Time: The Moon's Night Light",
+        "title": "The Moon's Night Light",
+        "body": "<h1>The Moon's Night Light</h1><p>Hi Parent,</p><p>The Moon leaves a light on for us. A comforting thought for the dark night.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Respect night fears.</strong> A nightlight isn't a crutch; it's a tool for comfort. Whatever helps them sleep safely is a win.</p><br/><a href='http://localhost:3000/stories/22'>Read the full story</a>"
+    },
+    {
+        "id": 23,
+        "subject": "Story Time: The Lost Mitten",
+        "title": "The Lost Mitten",
+        "body": "<h1>The Lost Mitten</h1><p>Hi Mom,</p><p>One mitten warms many friends. A cozy winter tale.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Warmth is love.</strong> Physical warmth (hugs, cozy blankets) mimics emotional warmth. Snuggle up while reading!</p><br/><a href='http://localhost:3000/stories/23'>Read the full story</a>"
+    },
+    {
+        "id": 24,
+        "subject": "Story Time: The Grateful Garden",
+        "title": "The Grateful Garden",
+        "body": "<h1>The Grateful Garden</h1><p>Hi Parent,</p><p>The garden says thank you. A story to inspire gratitude.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Daily Gratitude.</strong> Ask 'What made you smile today?' at dinner. It wires the brain to look for the good.</p><br/><a href='http://localhost:3000/stories/24'>Read the full story</a>"
+    },
+    {
+        "id": 25,
+        "subject": "Story Time: Professor Paws",
+        "title": "Professor Paws",
+        "body": "<h1>Professor Paws</h1><p>Hi Mom,</p><p>School is in session for the puppies! Join Professor Paws for a lesson.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Playful learning.</strong> Kids learn best through play, not drills. Chase, hide-and-seek, and pretend play ARE 'school' for young brains.</p><br/><a href='http://localhost:3000/stories/25'>Read the full story</a>"
+    },
+    {
+        "id": 26,
+        "subject": "Story Time: The Boy Who Flew",
+        "title": "The Boy Who Flew",
+        "body": "<h1>The Boy Who Flew</h1><p>Hi Parent,</p><p>Timmy believes he can fly. And in his dreams, he does!</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Support the fantasy.</strong> Don't rush to correct their imagination. Magic and belief are distinct developing stages of childhood.</p><br/><a href='http://localhost:3000/stories/26'>Read the full story</a>"
+    },
+    {
+        "id": 27,
+        "subject": "Story Time: The Underwater Tea Party",
+        "title": "The Underwater Tea Party",
+        "body": "<h1>The Underwater Tea Party</h1><p>Hi Mom,</p><p>Tea with an octopus? Why not!</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Say 'Yes' to the weird.</strong> If they want to wear a costume to the grocery store or have tea in the bath, why not? These are the memories that stick.</p><br/><a href='http://localhost:3000/stories/27'>Read the full story</a>"
+    },
+    {
+        "id": 28,
+        "subject": "Story Time: The Dragon Who Loved Flowers",
+        "title": "The Dragon Who Loved Flowers",
+        "body": "<h1>The Dragon Who Loved Flowers</h1><p>Hi Parent,</p><p>Drake isn't a scary dragon. He's a gardener. A story about breaking molds.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Challenge stereotypes.</strong> Encourage your child to like what they like—whether it's trucks, dolls, mud, or sparkles—regardless of gender norms.</p><br/><a href='http://localhost:3000/stories/28'>Read the full story</a>"
+    },
+    {
+        "id": 29,
+        "subject": "Story Time: The Clock That Ticked Backwards",
+        "title": "The Clock That Ticked Backwards",
+        "body": "<h1>The Clock That Ticked Backwards</h1><p>Hi Mom,</p><p>Time is a tricky thing. Travel back with Grandpa's clock.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Cherish the 'Now'.</strong> The days are long but the years are short. Take a photo of a mundane moment today.</p><br/><a href='http://localhost:3000/stories/29'>Read the full story</a>"
+    },
+    {
+        "id": 30,
+        "subject": "Story Time: The Invisible Cat",
+        "title": "The Invisible Cat",
+        "body": "<h1>The Invisible Cat</h1><p>Hi Parent,</p><p>Whiskers is gone! Or is he? A fun game of hide and seek.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Object Permanence.</strong> Games like peek-a-boo and hide-and-seek help young children understand that you come back when you leave.</p><br/><a href='http://localhost:3000/stories/30'>Read the full story</a>"
+    },
+    {
+        "id": 31,
+        "subject": "Story Time: The Lonely Scarecrow",
+        "title": "The Lonely Scarecrow",
+        "body": "<h1>The Lonely Scarecrow</h1><p>Hi Mom,</p><p>Even scarecrows need friends.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Friendship skills.</strong> Role-play how to introduce yourself to a new friend with your stuffed animals. It helps shy kids feel prepared.</p><br/><a href='http://localhost:3000/stories/31'>Read the full story</a>"
+    },
+    {
+        "id": 32,
+        "subject": "Story Time: The Star That Fell",
+        "title": "The Star That Fell",
+        "body": "<h1>The Star That Fell</h1><p>Hi Parent,</p><p>From the sky to the sea, we all belong somewhere.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Belonging.</strong> Create family traditions (like Friday pizza night) to foster a deep sense of belonging for your child.</p><br/><a href='http://localhost:3000/stories/32'>Read the full story</a>"
+    },
+    {
+        "id": 33,
+        "subject": "Story Time: The Very Loud Library",
+        "title": "The Very Loud Library",
+        "body": "<h1>The Very Loud Library</h1><p>Hi Mom,</p><p>Shhh! Or maybe not?</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Volume control.</strong> Play the 'Loud and Quiet' game to teach volume regulation in a fun way, rather than constantly shushing.</p><br/><a href='http://localhost:3000/stories/33'>Read the full story</a>"
+    },
+    {
+        "id": 34,
+        "subject": "Story Time: The Cloud Castle",
+        "title": "The Cloud Castle",
+        "body": "<h1>The Cloud Castle</h1><p>Hi Parent,</p><p>Giants just want to play too.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Don't judge a book.</strong> Teacher your child to look for the kindness in others, even if they seem different or intimidating at first.</p><br/><a href='http://localhost:3000/stories/34'>Read the full story</a>"
+    },
+    {
+        "id": 35,
+        "subject": "Story Time: The Train to Nowhere",
+        "title": "The Train to Nowhere",
+        "body": "<h1>The Train to Nowhere</h1><p>Hi Mom,</p><p>Ride the Dream Train tonight.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Dream talk.</strong> Ask your child what they want to dream about before they sleep. It sets a positive tone for the night.</p><br/><a href='http://localhost:3000/stories/35'>Read the full story</a>"
+    },
+    {
+        "id": 36,
+        "subject": "Story Time: The Girl with Green Hair",
+        "title": "The Girl with Green Hair",
+        "body": "<h1>The Girl with Green Hair</h1><p>Hi Parent,</p><p>Ivy stands out in a crowd. And she loves it.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Self-Love.</strong> Affirm your child's physical traits. 'I love your curly hair,' 'I love your strong legs.' It builds body positivity early.</p><br/><a href='http://localhost:3000/stories/36'>Read the full story</a>"
+    },
+    {
+        "id": 37,
+        "subject": "Story Time: The Robot Who Had Feelings",
+        "title": "The Robot Who Had Feelings",
+        "body": "<h1>The Robot Who Had Feelings</h1><p>Hi Mom,</p><p>Beep boop... I love you.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Emotional Intelligence.</strong> Use a feelings chart or just name emotions throughout the day. 'I feel happy because...'. Robots might learn it, but kids live it.</p><br/><a href='http://localhost:3000/stories/37'>Read the full story</a>"
+    },
+    {
+        "id": 38,
+        "subject": "Story Time: The Missing Shadow",
+        "title": "The Missing Shadow",
+        "body": "<h1>The Missing Shadow</h1><p>Hi Parent,</p><p>Peter's shadow is being tricky.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Shadow Play.</strong> Go outside and play with shadows! It's great science learning (light and blockers) and pure fun.</p><br/><a href='http://localhost:3000/stories/38'>Read the full story</a>"
+    },
+    {
+        "id": 39,
+        "subject": "Story Time: The Ants' Picnic",
+        "title": "The Ants' Picnic",
+        "body": "<h1>The Ants' Picnic</h1><p>Hi Mom,</p><p>Teamwork makes the dream work!</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Chores as Teamwork.</strong> Frame cleanup as 'Teamwork time!' instead of a chore. 'Let's see how fast our team can clear the floor!'</p><br/><a href='http://localhost:3000/stories/39'>Read the full story</a>"
+    },
+    {
+        "id": 40,
+        "subject": "Story Time: The Paper Boat Journey",
+        "title": "The Paper Boat Journey",
+        "body": "<h1>The Paper Boat Journey</h1><p>Hi Parent,</p><p>Small boats embark on big journeys.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Letting go.</strong> It's hard to watch them drift away (even just to preschool). Trust that you've built them a strong enough boat.</p><br/><a href='http://localhost:3000/stories/40'>Read the full story</a>"
+    },
+    {
+        "id": 41,
+        "subject": "Story Time: The Friendly Ghost",
+        "title": "The Friendly Ghost",
+        "body": "<h1>The Friendly Ghost</h1><p>Hi Mom,</p><p>Casper wants a playdate.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Inclusivity.</strong> Talk about including the kid who is sitting alone. Kindness is a muscle we exercise.</p><br/><a href='http://localhost:3000/stories/41'>Read the full story</a>"
+    },
+    {
+        "id": 42,
+        "subject": "Story Time: The Snowman's Summer",
+        "title": "The Snowman's Summer",
+        "body": "<h1>The Snowman's Summer</h1><p>Hi Parent,</p><p>Impossible dreams can come true.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Dream Big.</strong> Never stifle a 'crazy' dream. If they want to be an astronaut-ballerina, help them find the helmet and the tutu.</p><br/><a href='http://localhost:3000/stories/42'>Read the full story</a>"
+    },
+    {
+        "id": 43,
+        "subject": "Story Time: The Talking Toaster",
+        "title": "The Talking Toaster",
+        "body": "<h1>The Talking Toaster</h1><p>Hi Mom,</p><p>Start your day with a laugh.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Humor is survival.</strong> When everything is going wrong (spilled milk, tantrums), try to find the funny side. It breaks the stress cycle.</p><br/><a href='http://localhost:3000/stories/43'>Read the full story</a>"
+    },
+    {
+        "id": 44,
+        "subject": "Story Time: The Boy Who Ate The Moon",
+        "title": "The Boy Who Ate The Moon",
+        "body": "<h1>The Boy Who Ate The Moon</h1><p>Hi Parent,</p><p>Is the moon made of crackers?</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Snack curiosity.</strong> Involve them in food choices. 'What shape should our sandwiches be today?' Autonomy reduces pickiness.</p><br/><a href='http://localhost:3000/stories/44'>Read the full story</a>"
+    },
+    {
+        "id": 45,
+        "subject": "Story Time: The Secret Door",
+        "title": "The Secret Door",
+        "body": "<h1>The Secret Door</h1><p>Hi Mom,</p><p>Magic is hidden in the corners.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Secret Spaces.</strong> Kids love small nooks (forts, under tables). It makes them feel big and in control. Let them build one!</p><br/><a href='http://localhost:3000/stories/45'>Read the full story</a>"
+    },
+    {
+        "id": 46,
+        "subject": "Story Time: The Musical Forest",
+        "title": "The Musical Forest",
+        "body": "<h1>The Musical Forest</h1><p>Hi Parent,</p><p>The world is singing.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Listen.</strong> Go for a 'Listening Walk'. Stop and identify 5 sounds. It grounds you both in the present moment.</p><br/><a href='http://localhost:3000/stories/46'>Read the full story</a>"
+    },
+    {
+        "id": 47,
+        "subject": "Story Time: The Kangaroo with No Pouch",
+        "title": "The Kangaroo with No Pouch",
+        "body": "<h1>The Kangaroo with No Pouch</h1><p>Hi Mom,</p><p>There's no one 'right' way to be a mom.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>You are enough.</strong> Kiki finds her own way, and so do you. Don't compare your parenting journey to others.</p><br/><a href='http://localhost:3000/stories/47'>Read the full story</a>"
+    },
+    {
+        "id": 48,
+        "subject": "Story Time: The City of Sweets",
+        "title": "The City of Sweets",
+        "body": "<h1>The City of Sweets</h1><p>Hi Parent,</p><p>A delicious dream.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Treats are okay.</strong> labeling food as 'good' or 'bad' can create issues. Food is fuel AND fun. Enjoy the treat together without guilt.</p><br/><a href='http://localhost:3000/stories/48'>Read the full story</a>"
+    },
+    {
+        "id": 49,
+        "subject": "Story Time: The Owl Who Slept at Night",
+        "title": "The Owl Who Slept at Night",
+        "body": "<h1>The Owl Who Slept at Night</h1><p>Hi Mom,</p><p>Owen does things differently.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Rhythms.</strong> Some kids are night owls, some are early birds. Working WITH their natural rhythm instead of fighting it saves so much energy.</p><br/><a href='http://localhost:3000/stories/49'>Read the full story</a>"
+    },
+    {
+        "id": 50,
+        "subject": "Story Time: The End of the Rainbow",
+        "title": "The End of the Rainbow",
+        "body": "<h1>The End of the Rainbow</h1><p>Hi Parent,</p><p>The treasure was us all along.</p><h3>Ms. Erica's Parenting Tip</h3><p><strong>Connect.</strong> The greatest gift you give your child is your presence. Put down the phone for 5 minutes of pure connection today.</p><br/><a href='http://localhost:3000/stories/50'>Read the full story</a>"
+    }
+]
